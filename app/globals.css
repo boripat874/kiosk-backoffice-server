@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/* :root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+.signin-container {
+  @apply h-[100vh] w-[100vw] flex justify-center items-center 
+}
+.signin-box {
+  @apply w-[400px] h-[800px] rounded-lg p-5  shadow-[#3EB776] flex flex-col items-start;
+}
+.signin-box h1 {
+  @apply mb-5;
+}
+input {
+  @apply rounded-md border border-[#2B5F60] bg-white w-full;
+}
+
+input[type="text"] {
+  @apply h-[42px] rounded-md ;
+}
+
+.form-control {
+  @apply p-2 rounded-md border border-[#2B5F60] w-full;
+}
+
+body {
+  /* @apply bg-gradient-to-tr from-blue-600 to-teal-700; */
+  @apply bg-[#F2F2F2] text-[#2B5F60];
+}
+
+.signin-box .btn {
+  @apply mt-4 bg-[#3EB776]  text-white px-6 py-2 rounded-md;
+}
+
+.btn {
+  @apply bg-teal-600 hover:bg-teal-900 text-white px-6 py-2 rounded-md;
+}
+
+.btn-delete {
+  @apply bg-red-500 text-white px-6 py-2 rounded-md;
+}
+
+.btn-active {
+  @apply bg-white border-2 border-teal-600 text-teal-600;
+}
+
+.content-header {
+  @apply text-2xl font-bold;
+}
+
+.table {
+  @apply w-full;
+}
+
+.table thead {
+  @apply bg-teal-600 text-white;
+}
+
+.table thead th {
+  @apply p-3;
+}
+
+.table tbody tr {
+  @apply border-b border-gray-300;
+}
+
+.table tbody td {
+  @apply p-3 bg-gray-100;
+}
+
+.btn-edit {
+  @apply bg-blue-600 text-white px-2 py-1 rounded-md;
+}
+
+.btn-delete {
+  @apply bg-red-600 text-white px-2 py-1 rounded-md;
+}
+
+.content {
+  @apply  flex-1 pl-2 overflow-auto
+}
