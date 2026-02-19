@@ -7,7 +7,7 @@ module.exports = {
     // watch: true,
     // Optional: Environment variables if needed
     instances: 1,
-    cron_restart: '0 0 * * *',
+    // cron_restart: '0 0 * * *',
     env: {
       NODE_ENV: 'development',
       PORT: 3002 // <--- DEVELOPMENT PORT
