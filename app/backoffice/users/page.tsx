@@ -663,6 +663,7 @@ export default function UsersPage() {
                   <th className="h-12 w-[100px]">ชื่อ นามสกุล</th>
                   <th className="h-12 w-[100px]">บัตรประชาชน</th>
                   <th className="h-12 w-[100px]">พาสปอร์ต</th>
+                  <th className="h-12 w-[100px]">บัญชีผู้ใช้</th>
                   <th className="h-12 w-[100px]">เบอร์โทร</th>
                   <th className="h-12 w-[100px]">เวลาหมดอายุ</th>
                   <th className="h-12 w-[100px]">Action</th>
@@ -684,6 +685,7 @@ export default function UsersPage() {
                       </td>
                       <td className="h-12 w-[100px]">{user.idcardnumber}</td>
                       <td className="h-12 w-[100px]">{user.passportnumber}</td>
+                      <td className="h-12 w-[100px]">{user.user}</td>
                       <td className="h-12 w-[100px]">{user.phone}</td>
                       <td className='h-12 w-[100px]'>{user.expirationdate}</td>
 
