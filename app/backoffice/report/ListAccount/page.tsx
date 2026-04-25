@@ -387,7 +387,7 @@ export default function ReportPage() {
                   </tr>
                 )): 
                   <tr>
-                    <td colSpan={10} className='h-[400px] text-center text-lg'>ไม่พบข้อมูลผู้เข้าใช้งาน</td>
+                    <td colSpan={11} className='h-[400px] text-center text-lg'>ไม่พบข้อมูลผู้เข้าใช้งาน</td>
                   </tr>
                 }
 
