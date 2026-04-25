@@ -340,7 +340,7 @@ export default function Sidebar() {
            
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
+              viewBox="0 0 20 22"
               className="w-[25px] h-[20px]"
               fill={(pathname === "/backoffice/report/TrafficVolume") || 
                 (pathname === "/backoffice/report/ListAccount") ||
