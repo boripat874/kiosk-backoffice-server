@@ -132,7 +132,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
         },
         params: {
           search: search,
-          id: id , 
+          id: id, 
           // user: user
         }
       })
@@ -165,9 +165,9 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
 
     try{
 
-      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/reportuserdetails`,{
-        // id: id,
-      },{
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reportuserdetails`,
+        // { id: id,},
+      {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
