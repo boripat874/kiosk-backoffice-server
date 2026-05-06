@@ -26,6 +26,7 @@ interface ReportEntry {
   surname: string | null;
   idcardnumber: string | null;
   passportnumber: string | null;
+  user: string | null;
   phone: string | null;
   expiredate: string | null;
 }
@@ -260,6 +261,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
     csvContent += `ชื่อ นามสกุล:,${`${reportsdetail?.name || ''} ${reportsdetail?.surname || ''}`.trim() || '-'}` + "\n";
     csvContent += `บัตรประชาชน:,${reportsdetail?.idcardnumber || '-'}` + "\n";
     csvContent += `พาสปอร์ต:,${reportsdetail?.passportnumber || '-'}` + "\n";
+    csvContent += `บัญชีผู้ใช้:,${reportsdetail?.user || '-'}` + "\n";
     csvContent += `เบอร์โทร:,${reportsdetail?.phone || '-'}` + "\n";
     csvContent += `เวลาหมดอายุ:,${reportsdetail?.expiredate || '-'}` + "\n";
     csvContent += "" + "\n";
@@ -412,6 +414,10 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
 
           <div className=''>
             พาสปอร์ต : {reportsdetail?.passportnumber || '-'}
+          </div>
+
+          <div className=''>
+            บัญชีผู้ใช้ : {reportsdetail?.user || '-'}
           </div>
 
           <div className=''>
