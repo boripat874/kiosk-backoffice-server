@@ -98,7 +98,6 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
 
   useEffect(() => {
   
-      
       periodRef.current = period;
       timestartRef.current = timestart;
       timeendRef.current = timeend;
@@ -121,7 +120,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
   
       }
 
-      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reportuserdetails`,
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reportloglistall`,
         // { id: id},
       {
         headers: {
@@ -165,7 +164,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
 
     try{
 
-      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reportuserdetails`,
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reportloglistall`,
         // { id: id,},
       {
         headers: {
