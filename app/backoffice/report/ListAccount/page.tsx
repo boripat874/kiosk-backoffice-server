@@ -18,6 +18,7 @@ interface ReportEntry {
   surname: string | null;
   idcardnumber: string | null;
   passportnumber: string | null;
+  user: string | null;
   phone: string | null;
   expiredate: string | null;
   duration: string | null;
@@ -356,6 +357,7 @@ export default function ReportPage() {
                 <th className="h-12 w-[100px]">ชื่อ นามสกุล</th>
                 <th className="h-12 w-[100px]">บัตรประชาชน</th>
                 <th className="h-12 w-[100px]">พาสปอร์ต</th>
+                <th className="h-12 w-[100px]">บัญชีผู้ใช้</th>
                 <th className="h-12 w-[100px]">เบอร์โทร</th>
                 <th className="h-12 w-[100px]">เวลาหมดอายุ</th>
                 <th className="h-12 w-[100px]">ระยะเวลาใช้งาน</th>
@@ -380,6 +382,7 @@ export default function ReportPage() {
                     <td className='h-12 w-[100px]'>{report.name} {report.surname}</td>
                     <td className='h-12 w-[100px]'>{report.idcardnumber}</td>
                     <td className='h-12 w-[100px]'>{report.passportnumber}</td>
+                    <td className='h-12 w-[100px]'>{report.user}</td>
                     <td className='h-12 w-[100px]'>{report.phone}</td>
                     <td className='h-12 w-[100px]'>{report.expiredate}</td>
                     <td className='h-12 w-[100px]'>{report.duration}</td>
@@ -387,7 +390,7 @@ export default function ReportPage() {
                   </tr>
                 )): 
                   <tr>
-                    <td colSpan={11} className='h-[400px] text-center text-lg'>ไม่พบข้อมูลผู้เข้าใช้งาน</td>
+                    <td colSpan={12} className='h-[400px] text-center text-lg'>ไม่พบข้อมูลผู้เข้าใช้งาน</td>
                   </tr>
                 }
 
