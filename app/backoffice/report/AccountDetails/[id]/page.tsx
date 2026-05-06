@@ -121,9 +121,9 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
   
       }
 
-      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/reportuserdetails`,{
-        id: id,
-      },{
+      await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/reportuserdetails`,
+        // { id: id},
+      {
         headers: {
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
@@ -131,7 +131,9 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
           "Authorization": `Bearer ${localStorage.getItem("token")}`,
         },
         params: {
-          search: search
+          search: search,
+          id: id , 
+          // user: user
         }
       })
       .then((response) => {
@@ -164,7 +166,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
     try{
 
       await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/reportuserdetails`,{
-        id: id,
+        // id: id,
       },{
         headers: {
           "Content-Type": "application/json",
@@ -173,6 +175,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
           "Authorization": `Bearer ${localStorage.getItem("token")}`,
         },
         params: {
+          id: id ,
           search: search,
           period: periodRef.current,
           date_start: timestartRef.current,
