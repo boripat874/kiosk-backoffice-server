@@ -514,8 +514,8 @@ export default function UsersPage() {
       text: "คุณต้องการลบผู้ใช้งานนี้หรือไม่",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#188875",
       confirmButtonText: "ยืนยัน",
       cancelButtonText: "ยกเลิก",
     }).then(async (result) => {
@@ -582,9 +582,9 @@ export default function UsersPage() {
         <div className="w-full min-h-[820px] bg-white mt-2 p-4 rounded-lg shadow-md">
 
           {/* header table */}
-          <div className="flex flex-row justify-between items-center text-white">
+          <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row justify-between items-center p-4">
-              <p className="text-2xl font-bold text-[#2B5F60]">
+              <p className="text-2xl font-bold border-oxbowteal">
                 รายการผู้เข้าใช้งาน
               </p>
             </div>
@@ -635,11 +635,11 @@ export default function UsersPage() {
               </button>
 
               <div className="w-[300px] relative ">
-                <i className="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                <i className="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-oxbowteal"></i>
                 <input
                   type="text"
                   placeholder="Search for users..."
-                  className="w-full p-2 pl-10 rounded-lg border-0  text-[#2B5F60] focus:outline-none focus:ring-2 focus:ring-[#2B5F60]"
+                  className="w-full p-2 pl-10 rounded-lg border-0  border-oxbowteal focus:outline-none focus:ring-2 focus:ring-oxbowteal"
                   onChange={(e) => setSearch(e.target.value)}
                   value={search}
                   onKeyDown={(e) => {
@@ -655,7 +655,7 @@ export default function UsersPage() {
           {/* content table */}
           <div className="min-h-[715px] overflow-x-auto ">
             <table className="min-w-[1536px] 2xl:w-full p-4 table-auto text-center ">
-              <thead className="border-b border-[#2B5F60] bg-white sticky top-0">
+              <thead className="border-b border-oxbowteal bg-white sticky top-0">
                 <tr>
                   <th className="h-12 w-[100px]">วันที่ขอเข้าใช้งาน</th>
                   <th className="h-12 w-[100px]">ประเภทผู้มาติดต่อ</th>
@@ -710,7 +710,7 @@ export default function UsersPage() {
                   <tr>
                     <td
                       colSpan={9}
-                      className="h-96 text-center text-lg text-gray-500"
+                      className="h-96 text-center text-lg opacity-50"
                     >
                       ไม่พบข้อมูลผู้เข้าใช้งาน
                     </td>
@@ -734,7 +734,7 @@ export default function UsersPage() {
             <div>
               <div>กลุ่มผู้ใช้</div>
               <select
-                className="w-full h-[42px] border border-[#2B5F60] rounded-md p-2 mb-2"
+                className="w-full h-[42px] border border-oxbowteal rounded-md p-2 mb-2"
                 defaultValue={ugroupid}
                 onChange={(e) => setGroupId(e.target.value)}
               >
@@ -839,7 +839,7 @@ export default function UsersPage() {
               <div>Password <span className="text-red-500">*</span></div>
               <div className="relative">
                 <input
-                  className="w-full p-2 border border-[#2B5F60] rounded-md"
+                  className="w-full p-2 border border-oxbowteal rounded-md"
                   type={isPasswordVisible ? "text" : "password"} // Toggle between text and password
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -848,7 +848,7 @@ export default function UsersPage() {
                 <button
                   type="button"
                   onClick={() => setIsPasswordVisible(!isPasswordVisible)} // Toggle visibility
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-oxbowteal"
                 >
                   {isPasswordVisible ? (
                     <i className="fa-solid fa-eye-slash"></i> // Eye-slash icon for hidden
@@ -873,7 +873,7 @@ export default function UsersPage() {
 
           </div>
 
-          <div className="mt-2 border-t border-[#2B5F60] pt-2">
+          <div className="mt-2 border-t border-oxbowteal pt-2">
             <button className="btn mr-2" onClick={handleEditSave}>
               <i className="fa-solid fa-save mr-2"></i>
               บันทึก
@@ -894,7 +894,7 @@ export default function UsersPage() {
             <div>
               <div>กลุ่มผู้ใช้ <span className="text-red-500">*</span></div>
               <select
-                className="w-full h-[42px] border border-[#2B5F60] rounded-md p-2 mb-2"
+                className="w-full h-[42px] border border-oxbowteal rounded-md p-2 mb-2"
                 onChange={(e) => setGroupId(e.target.value)}
               >
                 {Array.isArray(userGroups) && userGroups.length > 0 ? (
@@ -988,7 +988,7 @@ export default function UsersPage() {
               <div>Password <span className="text-red-500">*</span></div>
               <div className="relative">
                 <input
-                  className="w-full p-2 border border-[#2B5F60] rounded-md"
+                  className="w-full p-2 border border-oxbowteal rounded-md"
                   type={isPasswordVisible ? "text" : "password"} // Toggle between text and password
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="กรุณากรอกรหัสผ่าน"
@@ -996,7 +996,7 @@ export default function UsersPage() {
                 <button
                   type="button"
                   onClick={() => setIsPasswordVisible(!isPasswordVisible)} // Toggle visibility
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-oxbowteal"
                 >
                   {isPasswordVisible ? (
                     <i className="fa-solid fa-eye-slash"></i> // Eye-slash icon for hidden
@@ -1021,7 +1021,7 @@ export default function UsersPage() {
           </div>
 
         </div>
-        <div className="mt-2 pt-2 border-t border-[#2B5F60]">
+        <div className="mt-2 pt-2 border-t border-oxbowteal">
           <button className="btn mr-2" onClick={handleCreate}>
             <i className="fa-solid fa-plus mr-2"></i>
             เพิ่ม
@@ -1123,7 +1123,7 @@ return (
         </label>
         <input
           id="import-file"
-          className="w-full p-2 border rounded mb-3 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-[#e0f6f7] file:text-[#2B5F60] hover:file:bg-[#919999] disabled:opacity-50" // Basic file input styling
+          className="w-full p-2 border rounded mb-3 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-[#e0f6f7] file:border-oxbowteal hover:file:bg-[#919999] disabled:opacity-50" // Basic file input styling
           type="file"
           accept=".csv, text/csv"
           onChange={handleFileChange}
@@ -1131,13 +1131,13 @@ return (
           disabled={isLoading} // Disable while submitting
         />
         {selectedFile && (
-          <p className="text-sm text-[#2B5F60] mt-1">
+          <p className="text-sm border-oxbowteal mt-1">
             ไฟล์ที่เลือก: {selectedFile.name}
           </p>
         )}
       </div>
 
-      <div className="mt-2 pt-2 border-t border-[#2B5F60] flex justify-start">
+      <div className="mt-2 pt-2 border-t border-oxbowteal flex justify-start">
         <button
           className="btn"
           onClick={()=> {

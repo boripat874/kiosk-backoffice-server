@@ -454,7 +454,7 @@ export default function ReportPage() {
       </div>
 
       {/* เส้นคั่น */}
-      {/* <hr className="mt-4 border-t-3 border-[#2B5F60]" /> */}
+      {/* <hr className="mt-4 border-t-3 border-oxbowteal" /> */}
 
       <div className='w-full pt-2'>
         <Seclectdate  
@@ -472,12 +472,12 @@ export default function ReportPage() {
       <div className="w-full min-h-[650px] bg-white p-4 rounded-lg shadow-md mt-2 mb-0">
 
         {/* header table */}
-        <div className="flex flex-col justify-between items-center text-white">
+        <div className="flex flex-col justify-between items-center">
 
           
           <div className="flex flex-row justify-start items-center w-full px-4 py-2">
 
-            <p className="text-start text-2xl font-bold text-[#2B5F60]">
+            <p className="text-start text-2xl font-bold">
               รายการปริมาณการเข้าใช้งาน
             </p>
 
@@ -487,14 +487,14 @@ export default function ReportPage() {
           <div className="w-full h-[700px] grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
   
             {/* จำนวนผู้เข้าใช้งาน */}
-            <div className="w-full h-full bg-[#FFFFFF] rounded-lg shadow-md">
+            <div className="w-full h-full bg-white rounded-lg shadow-md">
 
               {/* <div className="p-4 flex flex-row justify-between items-center">
                 <p className="text-lg font-bold text-[#2B5F60]">
                   จำนวนผู้เข้าใช้งาน
                 </p>
                 <select
-                  className="p-2  rounded-md border-solid border-2 border-[#2B5F60] border-opacity-50 text-[#2B5F60]"
+                  className="p-2  rounded-md border-solid border-2 border-oxbowteal border-opacity-50 text-[#2B5F60]"
                   defaultValue={Selectnumberuser}
                   onChange={(e) => {
                     setSelectNumberuser(e.target.value);
@@ -510,7 +510,7 @@ export default function ReportPage() {
 
               <div className='w-full p-4 '>
 
-                <p className="text-lg text-center font-bold text-[#2B5F60]">
+                <p className="text-lg text-center font-bold">
                   จำนวนผู้เข้าใช้งาน
                 </p>
 
@@ -524,7 +524,7 @@ export default function ReportPage() {
                   <Bar data={barChartData} options={barChartOptions} />
                 ) : (
                   <div className="flex justify-center items-center h-full">
-                    <p className="text-gray-500 text-lg">
+                    <p className="opacity-50 text-lg">
                       ไม่พบข้อมูลจำนวนผู้เข้าใช้งาน
                     </p>
                   </div>
@@ -533,13 +533,13 @@ export default function ReportPage() {
             </div>
   
             {/* ประเภทผู้ใช้ */}
-            <div className="bg-[#FFFFFF] rounded-lg shadow-md flex flex-col justify-between items-center">
+            <div className="bg-white rounded-lg shadow-md flex flex-col justify-between items-center">
 
               {/* title */}
               {/* <div className="p-4 flex flex-row justify-between items-center">
                 <p className="text-lg font-bold text-[#2B5F60]">ประเภทผู้ใช้</p>
                 <select
-                  className="p-2  rounded-md border-solid border-2 border-[#2B5F60] border-opacity-50 text-[#2B5F60]"
+                  className="p-2  rounded-md border-solid border-2 border-oxbowteal border-opacity-50 text-[#2B5F60]"
                   defaultValue={selectusertype}
                   onChange={(e) => {
                     setSelectUsertype(e.target.value);
@@ -554,7 +554,7 @@ export default function ReportPage() {
               </div> */}
   
               <div className='w-full p-4'>
-                <p className="text-lg text-center font-bold text-[#2B5F60]">
+                <p className="text-lg text-center font-bold">
                   ประเภทผู้ใช้
                 </p>
               </div>
@@ -569,7 +569,7 @@ export default function ReportPage() {
                 ) : (
                   <div className="flex justify-center items-center h-full">
 
-                    <p className="text-gray-500 text-lg">
+                    <p className="opacity-50 text-lg">
                       ไม่พบข้อมูลประเภทผู้ใช้
                     </p>
 

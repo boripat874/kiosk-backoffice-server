@@ -113,14 +113,14 @@ function SubButtomSidebar( {countShow,label,data ,hoveraction , children , onCli
   };
 
   return (
-    <div className={`relative w-full ${status ? "bg-white" : " bg-[#58A776]"} md:rounded-tl-lg md:rounded-bl-lg rounded-tl-xl rounded-bl-xl flex flex-col justify-start`}>
+    <div className={`relative w-full ${status ? "bg-white" : " bg-oxbowteal"} md:rounded-tl-lg md:rounded-bl-lg rounded-tl-xl rounded-bl-xl flex flex-col justify-start`}>
 
       <button
       
         onClick={handleButtonClick} // Use the new handler
 
-        className={`relative w-full h-[44px] hover:border-b-2 border-[#96db9a] md:rounded-tl-lg md:rounded-bl-lg rounded-tl-xl rounded-bl-xl ${
-          status ? "bg-white" : " bg-[#58A776]"
+        className={`relative w-full h-[44px] hover:border-b-1 border-lessenteal md:rounded-tl-lg md:rounded-bl-lg rounded-tl-xl rounded-bl-xl ${
+          status ? "bg-white" : " bg-oxbowteal"
         } flex items-center justify-between pr-2`}
       >
 
@@ -137,7 +137,7 @@ function SubButtomSidebar( {countShow,label,data ,hoveraction , children , onCli
           {showLabelWithDelay ? (
             <span
               className={`ml-8 md:ml-2 xl:ml-4 text-[16px] md:text-[10px] xl:text-sm font-semibold ${
-                status ? "text-[#3DA48F]" : "text-white"
+                status ? "text-oxbowteal" : "text-white"
               }`}
             >
               {label}
@@ -149,12 +149,12 @@ function SubButtomSidebar( {countShow,label,data ,hoveraction , children , onCli
           isSubMenuOpen ? (
             <BiChevronUp
               size={25}
-              className={`ml-2 ${status ? "text-white" : "text-[#3DA48F]"}`}
+              className={`ml-2 ${status ? "text-white" : "text-oxbowteal"}`}
             />
           ) : (
             <BiChevronDown
               size={25}
-              className={`ml-2 ${status ? "text-white" : "text-[#3DA48F]"}`}
+              className={`ml-2 ${status ? "text-white" : "text-oxbowteal"}`}
             />
           )
         ) : null}
@@ -199,8 +199,8 @@ function SubButtomSidebar( {countShow,label,data ,hoveraction , children , onCli
               className={`text-[16px] md:text-[10px] xl:text-sm flex items-center justify-center w-full h-[35px] xl:h-[45px] md:rounded-bl-lg rounded-bl-xl
                 ${
                   currentPathname === item.urllink
-                    ?  "text-[#58A776] bg-white" // Active link style
-                    : "text-white bg-[#077a33]"// Default and hover style
+                    ?  "text-oxbowteal bg-white" // Active link style
+                    : "text-white bg-oxbowteal"// Default and hover style
                 }`}
             >
               {item.label}

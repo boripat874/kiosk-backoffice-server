@@ -459,7 +459,7 @@ export default function Dashboard() {
         </div>
 
         {/* เส้นคั่น */}
-        {/* <hr className="mt-4 border-t-3 border-[#2B5F60]" /> */}
+        {/* <hr className="mt-4 border-t-3 border-oxbowteal" /> */}
 
         {/*chart */}
         <div className="w-full min-h-[370px] grid grid-cols-1 md:grid-cols-2  gap-2 mt-2">
@@ -467,11 +467,11 @@ export default function Dashboard() {
           {/* จำนวนผู้เข้าใช้งาน */}
           <div className="w-full h-full bg-[#FFFFFF] rounded-lg shadow-md">
             <div className="p-4 flex flex-row justify-between items-center">
-              <p className="text-lg font-bold text-[#2B5F60]">
+              <p className="text-lg font-bold">
                 จำนวนผู้เข้าใช้งาน
               </p>
               <select
-                className="p-2  rounded-md border-solid border-2 border-[#2B5F60] border-opacity-50 text-[#2B5F60]"
+                className="p-2  rounded-md border-solid border-2 border-oxbowteal border-opacity-50"
                 defaultValue={Selectnumberuser}
                 onChange={(e) => {
                   setSelectNumberuser(e.target.value);
@@ -493,7 +493,7 @@ export default function Dashboard() {
                 <Bar data={barChartData} options={barChartOptions} />
               ) : (
                 <div className="flex justify-center items-center h-full">
-                  <p className="text-gray-500 text-lg">
+                  <p className="opacity-50 text-lg">
                     ไม่พบข้อมูลจำนวนผู้เข้าใช้งาน
                   </p>
                 </div>
@@ -502,12 +502,12 @@ export default function Dashboard() {
           </div>
 
           {/* ประเภทผู้ใช้ */}
-          <div className=" h-full bg-[#FFFFFF] rounded-lg shadow-md">
+          <div className=" h-full bg-white rounded-lg shadow-md">
             {/* title */}
             <div className="p-4 flex flex-row justify-between items-center">
-              <p className="text-lg font-bold text-[#2B5F60]">ประเภทผู้ใช้</p>
+              <p className="text-lg font-bold">ประเภทผู้ใช้</p>
               <select
-                className="p-2  rounded-md border-solid border-2 border-[#2B5F60] border-opacity-50 text-[#2B5F60]"
+                className="p-2  rounded-md border-solid border-2 border-oxbowteal border-opacity-50"
                 defaultValue={selectusertype}
                 onChange={(e) => {
                   setSelectUsertype(e.target.value);
@@ -529,7 +529,7 @@ export default function Dashboard() {
                 <Pie data={pieChartData} options={pieChartOptions} />
               ) : (
                 <div className="flex justify-center items-center h-full">
-                  <p className="text-gray-500 text-lg">
+                  <p className="opacity-50 text-lg">
                     ไม่พบข้อมูลประเภทผู้ใช้
                   </p>
                 </div>
@@ -542,16 +542,16 @@ export default function Dashboard() {
         {/* table */}
         <div className="w-full min-h-[450px] p-2 mt-2 pb-4 bg-white rounded-lg shadow-md">
           {/* header table */}
-          <div className="flex flex-row justify-between items-center px-[20px] text-white">
+          <div className="flex flex-row justify-between items-center px-[20px] ">
             <div className="flex flex-row justify-between items-center">
-              <p className="text-xl font-bold text-[#2B5F60]">
+              <p className="text-xl font-bold">
                 {" "}
                 รายการผู้เข้าใช้งาน
               </p>
             </div>
 
             <div className=" my-4 rounded-sm bg-opacity-20">
-              {/* <select className='p-2  rounded-md border-solid border-2 border-[#2B5F60] border-opacity-50' value={shopid} onChange={(e) => {
+              {/* <select className='p-2  rounded-md border-solid border-2 border-oxbowteal border-opacity-50' value={shopid} onChange={(e) => {
                 productlist(e.target.value)
               }}>
                 {shops.map((shop:Shop) => (
@@ -561,7 +561,7 @@ export default function Dashboard() {
                 ))}
               </select> */}
               <select
-                className="p-2  rounded-md border-solid border-2 border-[#2B5F60] border-opacity-50 text-[#2B5F60]"
+                className="p-2  rounded-md border-solid border-2 border-oxbowteal border-opacity-50"
                 value={selectusers}
                 onChange={(e) => {
                   setSelectUsers(e.target.value);
@@ -579,7 +579,7 @@ export default function Dashboard() {
           {/* content table */}
           <div className="p-4 overflow-auto">
             <table className="min-w-[1536px] 2xl:w-full h-full table-auto text-center ">
-              <thead className="border-b border-[#2B5F60] sticky top-0 z-10 bg-white">
+              <thead className="border-b border-oxbowteal sticky top-0 z-10 bg-white">
                 <tr>
                   {/* <th className='h-12 w-[100px]'>Shop Number</th> */}
                   <th className="h-12 w-[100px]">วันที่เข้าใช้งานล่าสุด</th>
@@ -634,7 +634,7 @@ export default function Dashboard() {
                   <tr>
                     <td
                       colSpan={8}
-                      className="h-72 text-center text-lg text-gray-500"
+                      className="h-72 text-center text-lg opacity-50"
                     >
                       ไม่พบข้อมูลผู้เข้าใช้งาน
                     </td>

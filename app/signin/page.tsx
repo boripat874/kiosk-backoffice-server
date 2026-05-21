@@ -138,7 +138,7 @@ export default function SignIn() {
         {isLoading && (
           <div className="absolute z-[2]">
             <div className="w-[90vw] h-screen m-auto flex justify-center items-center">
-              <div className="animate-spin rounded-full h-32 w-32 border-t-8 border-b-8 border-white"></div>
+              <div className="animate-spin rounded-full h-32 w-32 border-t-8 border-b-8 border-oxbowteal"></div>
             </div>
           </div>
         )}
@@ -153,10 +153,10 @@ export default function SignIn() {
             /> */}
             <Image
               className="oject-contain rounded-2xl" // next/image handles sizing via props, className is for styling
-              src={"/img/user-profile.png"} // Assuming this path is correct in your public folder
+              src={"/img/logobackoffice.png"} // Assuming this path is correct in your public folder
               alt="logo"
-              width={120} // Required width prop
-              height={120} // Required height prop
+              width={140} // Required width prop
+              height={140} // Required height prop
             />
 
           </div>
@@ -171,7 +171,7 @@ export default function SignIn() {
 
           <input
             placeholder="ระบุชื่อบัญชีผู้ใช้"
-            className="mt-1 w-full p-2 border border-[#2B5F60] rounded-md"
+            className="mt-1 w-full p-2 border border-oxbowteal rounded-md"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -189,7 +189,7 @@ export default function SignIn() {
           <div className="relative w-full">
             <input
               placeholder="ระบุรหัสผ่าน"
-              className="mt-1 w-full p-2 border border-[#2B5F60] rounded-md"
+              className="mt-1 w-full p-2 border border-oxbowteal rounded-md"
               type={isPasswordVisible ? "text" : "password"}
               value={password}
               onChange={(e) => setPassword(e.target.value)}

@@ -26,7 +26,7 @@ export default function ButtonSidebar({
   return (
     <>
         <div
-            className={` w-full h-[44px] rounded-[10px] bg-[#58A776] hover:border-b-2 border-[#96db9a] text-white ${
+            className={` w-full h-[44px] rounded-[10px] bg-oxbowteal hover:bg-lessenteal hover:border-b-1 border-lessenteal text-white ${
               pathname === hrefButton ? "shadow-md" : "shadow-none"
             }`}
         >
@@ -35,8 +35,8 @@ export default function ButtonSidebar({
            
             ${
                 pathname === hrefButton
-                ? "bg-white text-[#58A776] "
-                : "bg-[#58A776] text-white"
+                ? "bg-white text-oxbowteal "
+                : "bg-oxbowteal text-white"
             }  h-full py-2  
             ${showLabelWithDelay ? "pl-2 xl:pl-4 " : "pl-4 xl:pl-7"} 
             rounded-md flex  items-center  gap-3 font-semibold

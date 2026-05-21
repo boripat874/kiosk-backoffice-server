@@ -199,14 +199,14 @@ export default function EventLogPage() {
       </div>
 
       {/* เส้นคั่น */}
-      {/* <hr className="mt-4 border-t-3 border-[#2B5F60]" /> */}
+      {/* <hr className="mt-4 border-t-3 border-oxbowteal" /> */}
 
       {/* table */}
       <div className="w-full min-h-[820px] bg-white p-4 rounded-lg shadow-md mt-2">
         {/* header table */}
-        <div className="flex flex-row justify-between items-center text-white">
+        <div className="flex flex-row justify-between items-center ">
           <div className="flex flex-row justify-between items-center p-4">
-            <p className="text-2xl font-bold text-[#2B5F60]">
+            <p className="text-2xl font-bold ">
               รายการดำเนินงาน
             </p>
           </div>
@@ -225,11 +225,11 @@ export default function EventLogPage() {
             </button>
 
             <div className="w-[300px] relative ">
-              <i className="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+              <i className="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-oxbowteal"></i>
               <input
                 type="text"
                 placeholder="Search for events..."
-                className="w-full p-2 pl-10 rounded-lg border-0  text-[#2B5F60] focus:outline-none focus:ring-2 focus:ring-[#2B5F60]"
+                className="w-full p-2 pl-10 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-[#2B5F60]"
                 onChange={(e) => setSearch(e.target.value)}
                 value={search}
                 onKeyDown={(e) => {
@@ -245,7 +245,7 @@ export default function EventLogPage() {
         {/* content table */}
         <div className="min-h-[715px] overflow-auto">
           <table className="min-w-[1536px] 2xl:w-full p-4 table-auto text-center ">
-            <thead className="border-b border-[#2B5F60] sticky top-0 z-10 bg-white">
+            <thead className="border-b border-oxbowteal sticky top-0 z-10 bg-white">
               <tr>
                 <th className="h-12 w-[100px]">เวลาวันที่</th>
                 <th className="h-12 w-[100px]">ชื่อ นามสกุล</th>
@@ -271,7 +271,7 @@ export default function EventLogPage() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={5} className="h-96 text-center text-lg">
+                  <td colSpan={5} className="h-96 text-center text-lg opacity-50">
                     ไม่พบข้อมูลดำเนินการ
                   </td>
                 </tr>

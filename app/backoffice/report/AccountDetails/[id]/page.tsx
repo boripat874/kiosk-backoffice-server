@@ -329,7 +329,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
       </div>
 
       {/* เส้นคั่น */}
-      {/* <hr className="mt-4 border-t-3 border-[#2B5F60]" /> */}
+      {/* <hr className="mt-4 border-t-3 border-oxbowteal" /> */}
 
       <div className='w-full pt-2'>
       
@@ -351,9 +351,9 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
       <div className="w-full min-h-[100px] bg-white p-4 rounded-lg shadow-md mt-2">
 
         {/* header table */}
-        <div className="flex flex-row justify-between items-center text-white">
+        <div className="flex flex-row justify-between items-center">
           <div className="flex flex-row justify-between items-center p-4">
-            <p className="text-2xl font-bold text-[#2B5F60]">
+            <p className="text-2xl font-bold">
               รายงาน Account Details
             </p>
           </div>
@@ -372,11 +372,11 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
             </button>
 
             <div className="w-[300px] relative ">
-              <i className="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+              <i className="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-oxbowteal"></i>
               <input
                 type="text"
                 placeholder="Search for reports..."
-                className="w-full p-2 pl-10 rounded-lg border-0  text-[#2B5F60] focus:outline-none focus:ring-2 focus:ring-[#2B5F60]"
+                className="w-full p-2 pl-10 rounded-lg border-0  text-oxbowteal focus:outline-none focus:ring-2 focus:ring-oxbowteal"
                 onChange={(e) => setSearch(e.target.value)}
                 value={search}
                 onKeyDown={(e) => {
@@ -428,7 +428,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
             เวลาหมดอายุ : {reportsdetail?.expiredate || '-'}
           </div>
           
-            {/* <thead className="border-b border-[#2B5F60] bg-white sticky top-0 z-10">
+            {/* <thead className="border-b border-oxbowteal bg-white sticky top-0 z-10">
 
               <tr>
                 
@@ -458,7 +458,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
         {/* content table */}
         <div className="min-h-[715px] overflow-x-auto ">
           <table className="min-w-[750px] 2xl:w-[750px] p-4 table-auto w-full text-center ">
-            {/* <thead className="border-b border-[#2B5F60] bg-white sticky top-0 z-10">
+            {/* <thead className="border-b border-oxbowteal bg-white sticky top-0 z-10">
 
               <tr>
                 
@@ -477,7 +477,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
 
             </thead> */}
 
-            <thead className="border-b border-[#2B5F60] bg-white sticky top-0 z-10">
+            <thead className="border-b border-oxbowteal bg-white sticky top-0 z-10">
 
               <tr>
                 
@@ -498,7 +498,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
                   </tr>
                 )): 
                   <tr>
-                    <td colSpan={9} className='h-96 text-center text-lg'>ไม่พบข้อมูลเข้าใช้งาน</td>
+                    <td colSpan={9} className='h-96 text-center text-lg opacity-50'>ไม่พบข้อมูลเข้าใช้งาน</td>
                   </tr>
                 }
 

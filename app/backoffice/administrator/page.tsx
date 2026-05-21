@@ -249,8 +249,8 @@ export default function UsersPage() {
         title: "คุณต้องการลบข้อมูลนี้หรือไม่?",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#188875",
         confirmButtonText: "ยืนยัน",
         cancelButtonText: "ยกเลิก",
       }).then(async (result) => {
@@ -311,9 +311,9 @@ export default function UsersPage() {
       {/* table */}
       <div className="w-full min-h-[820px] bg-white p-4 rounded-lg shadow-md mt-2">
         {/* header table */}
-        <div className="flex flex-row justify-between items-center text-white">
+        <div className="flex flex-row justify-between items-center">
           <div className="flex flex-row justify-between items-center p-4">
-            <p className="text-2xl font-bold text-[#2B5F60]">
+            <p className="text-2xl font-bold">
               รายการผู้ดูแลระบบ
             </p>
           </div>
@@ -344,11 +344,11 @@ export default function UsersPage() {
             </button>
 
             <div className="w-[300px] relative ">
-              <i className="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+              <i className="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-oxbowteal"></i>
               <input
                 type="text"
                 placeholder="Search for administrator..."
-                className="w-full p-2 pl-10 rounded-lg border-0  text-[#2B5F60] focus:outline-none focus:ring-2 focus:ring-[#2B5F60]"
+                className="w-full p-2 pl-10 rounded-lg border-0  text-oxbowteal focus:outline-none focus:ring-2 focus:ring-oxbowteal"
                 onChange={(e) => setSearch(e.target.value)}
                 value={search}
                 onKeyDown={(e) => {
@@ -364,7 +364,7 @@ export default function UsersPage() {
         {/* content table */}
         <div className="min-h-[715px] overflow-auto ">
             <table className="min-w-[1536px] 2xl:w-full p-4 table-auto text-center ">
-              <thead className="border-b border-[#2B5F60] bg-white sticky top-0">
+              <thead className="border-b border-oxbowteal bg-white sticky top-0">
               <tr>
                 <th className="h-12 w-[100px]">วันที่สร้าง</th>
                 <th className="h-12 w-[100px]">ชื่อ นามสกุล</th>
@@ -399,7 +399,7 @@ export default function UsersPage() {
                   </tr>
                 )): 
                   <tr>
-                    <td colSpan={6} className='h-96 text-center text-lg text-gray-500'>ไม่พบข้อมูลบัญชีผู้ใช้</td>
+                    <td colSpan={6} className='h-96 text-center text-lg opacity-50'>ไม่พบข้อมูลบัญชีผู้ใช้</td>
                   </tr>
                 }
 
@@ -471,7 +471,7 @@ export default function UsersPage() {
               <div>Password <span className="text-red-500">*</span></div>
               <div className="relative mb-2">
                 <input
-                  className="w-full p-2 border border-[#2B5F60] rounded-md"
+                  className="w-full p-2 border border-oxbowteal rounded-md"
                   type={isPasswordVisible ? "text" : "password"} // Toggle between text and password
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -480,7 +480,7 @@ export default function UsersPage() {
                 <button
                   type="button"
                   onClick={() => setIsPasswordVisible(!isPasswordVisible)} // Toggle visibility
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2"
                 >
                   {isPasswordVisible ? (
                     <i className="fa-solid fa-eye-slash"></i> // Eye-slash icon for hidden
@@ -497,7 +497,7 @@ export default function UsersPage() {
               <div>สิทธิ์ใช้งาน <span className="text-red-500">*</span></div>
 
               <select 
-              className="w-full h-[42px] border border-[#2B5F60] rounded-md p-2 mb-2" 
+              className="w-full h-[42px] border border-oxbowteal rounded-md p-2 mb-2" 
               value={level}
               onChange={(e) => setLevel(e.target.value)}
               >
@@ -518,7 +518,7 @@ export default function UsersPage() {
 
           </div>
 
-          <div className="mt-2 pt-2 border-t border-[#2B5F60]">
+          <div className="mt-2 pt-2 border-t border-oxbowteal">
             <button
               className="btn mr-2"
               onClick={handleEditSave}
@@ -567,7 +567,7 @@ export default function UsersPage() {
               <div>Password <span className="text-red-500">*</span></div>
               <div className="relative mb-2">
                 <input
-                  className="w-full p-2 border border-[#2B5F60] rounded-md"
+                  className="w-full p-2 border border-oxbowteal rounded-md"
                   type={isPasswordVisible ? "text" : "password"} // Toggle between text and password
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -576,7 +576,7 @@ export default function UsersPage() {
                 <button
                   type="button"
                   onClick={() => setIsPasswordVisible(!isPasswordVisible)} // Toggle visibility
-                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2"
                 >
                   {isPasswordVisible ? (
                     <i className="fa-solid fa-eye-slash"></i> // Eye-slash icon for hidden
@@ -592,7 +592,7 @@ export default function UsersPage() {
               <div>สิทธิ์ใช้งาน <span className="text-red-500">*</span></div>
 
               <select 
-              className="w-full h-[42px] border border-[#2B5F60] rounded-md p-2 mb-2" 
+              className="w-full h-[42px] border border-oxbowteal rounded-md p-2 mb-2" 
               defaultValue={level}
               onChange={(e) => setLevel(e.target.value)}
               >
@@ -614,7 +614,7 @@ export default function UsersPage() {
 
           </div>
 
-          <div className="mt-2 pt-2 border-t border-[#2B5F60]">
+          <div className="mt-2 pt-2 border-t border-oxbowteal">
             <button
               className="btn mr-2"
               onClick={handleCreate}

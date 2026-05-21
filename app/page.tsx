@@ -38,7 +38,7 @@ export default function Home() {
   return (
  
     <>
-      <div className="w-screen h-screen bg-gradient-to-b from-[#B1D2BE] to-[#439362]" >
+      <div className="w-screen h-screen bg-gradient-to-b from-lessenteal to-oxbowteal" >
 
         <SignIn/>   
       </div>

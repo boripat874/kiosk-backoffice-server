@@ -19,38 +19,53 @@
   }
 } */
 
+@theme inline {
+  --color-oatmilk: #FFFBF5;
+  --color-oxbowteal: #188875;
+  --color-deepforest: #134737;
+  --color-burntorange: #EC6325;
+  --color-earthbrown: #4F2C1E;
+  --color-safariyellow: #F7A820;
+  --color-olivedust: #434437;
+  --color-lessenteal: #57b4a5;
+  --color-hoverteal: #ecf7f4;
+  --color-hoveryellow: #f5cd88;
+  --color-hoverred: #f58686;
+  --color-lessengray: #ecebe9;
+}
+
 .signin-container {
   @apply h-[100vh] w-[100vw] flex justify-center items-center 
 }
 .signin-box {
-  @apply w-[400px] h-[800px] rounded-lg p-5  shadow-[#3EB776] flex flex-col items-start;
+  @apply w-[400px] h-[800px] rounded-lg p-5  shadow-black flex flex-col items-start;
 }
 .signin-box h1 {
   @apply mb-5;
 }
 input {
-  @apply rounded-md border border-[#2B5F60] bg-white w-full;
+  @apply rounded-md border border-oxbowteal bg-white w-full;
 }
 
 input[type="text"] {
   @apply h-[42px] rounded-md ;
 }
-
+ 
 .form-control {
-  @apply p-2 rounded-md border border-[#2B5F60] w-full;
+  @apply p-2 rounded-md border border-oxbowteal w-full;
 }
 
 body {
   /* @apply bg-gradient-to-tr from-blue-600 to-teal-700; */
-  @apply bg-[#F2F2F2] text-[#2B5F60];
+  @apply bg-oatmilk text-oxbowteal;
 }
 
 .signin-box .btn {
-  @apply mt-4 bg-[#3EB776]  text-white px-6 py-2 rounded-md;
+  @apply mt-4 bg-oxbowteal  text-white px-6 py-2 rounded-md;
 }
 
 .btn {
-  @apply bg-teal-600 hover:bg-teal-900 text-white px-6 py-2 rounded-md;
+  @apply bg-oxbowteal hover:bg-lessenteal text-white px-6 py-2 rounded-md;
 }
 
 .btn-delete {
@@ -58,7 +73,7 @@ body {
 }
 
 .btn-active {
-  @apply bg-white border-2 border-teal-600 text-teal-600;
+  @apply bg-white border-2 border-oxbowteal text-oxbowteal;
 }
 
 .content-header {
@@ -70,7 +85,7 @@ body {
 }
 
 .table thead {
-  @apply bg-teal-600 text-white;
+  @apply bg-oxbowteal text-white;
 }
 
 .table thead th {
@@ -78,15 +93,15 @@ body {
 }
 
 .table tbody tr {
-  @apply border-b border-gray-300;
+  @apply border-b border-oxbowteal;
 }
 
 .table tbody td {
-  @apply p-3 bg-gray-100;
+  @apply p-3 bg-oatmilk;
 }
 
 .btn-edit {
-  @apply bg-blue-600 text-white px-2 py-1 rounded-md;
+  @apply bg-safariyellow text-white px-2 py-1 rounded-md;
 }
 
 .btn-delete {

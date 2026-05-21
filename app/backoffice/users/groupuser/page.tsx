@@ -263,8 +263,8 @@ export default function GroupUserPage() {
         title: "คุณต้องการลบข้อมูลนี้หรือไม่?",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#188875",
         confirmButtonText: "ยืนยัน",
         cancelButtonText: "ยกเลิก",
       }).then(async (result) => {
@@ -325,9 +325,9 @@ export default function GroupUserPage() {
       {/* table */}
       <div className="w-full min-h-[820px] bg-white p-4 mt-2 rounded-lg shadow-md">
         {/* header table */}
-        <div className="flex flex-row justify-between items-center text-white">
+        <div className="flex flex-row justify-between items-center">
           <div className="flex flex-row justify-between items-center p-4">
-            <p className="text-2xl font-bold text-[#2B5F60]">
+            <p className="text-2xl font-bold">
               รายการกลุ่มผู้ใช้
             </p>
           </div>
@@ -355,7 +355,7 @@ export default function GroupUserPage() {
             </button>
 
             <div className="w-[300px] relative ">
-              <i className="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+              <i className="fa-solid fa-magnifying-glass absolute left-3 top-1/2 transform -translate-y-1/2 text-oxbowteal"></i>
               <input
                 type="text"
                 placeholder="Search for administrator..."
@@ -375,7 +375,7 @@ export default function GroupUserPage() {
         {/* content table */}
         <div className="min-h-[715px] overflow-x-auto ">
           <table className="min-w-[1536px] 2xl:w-full p-4 table-auto text-center ">
-            <thead className="border-b border-[#2B5F60] bg-white sticky top-0">
+            <thead className="border-b border-oxbowteal bg-white sticky top-0">
               <tr>
                 <th className="h-12 w-[100px]">วันที่สร้าง</th>
                 <th className="h-12 w-[100px]">ชื่อกลุ่มผู้ใช้</th>
@@ -418,7 +418,7 @@ export default function GroupUserPage() {
                 <tr>
                   <td
                     colSpan={4}
-                    className="h-96 text-center text-lg text-gray-500"
+                    className="h-96 text-center text-lg opacity-50"
                   >
                     ไม่พบข้อมูลบัญชีผู้ใช้
                   </td>
@@ -457,7 +457,7 @@ export default function GroupUserPage() {
               onChange={(e) => setDuration(e.target.value)}
             /> */}
 
-            <div className="mt-4 pt-2 border-t border-[#2B5F60]">
+            <div className="mt-4 pt-2 border-t border-oxbowteal">
               <button className="btn mr-2" onClick={handleEditSave}>
                 <i className="fa-solid fa-save mr-2"></i>
                 บันทึก
@@ -495,7 +495,7 @@ export default function GroupUserPage() {
             /> */}
           </div>
 
-          <div className="mt-2 pt-2 border-t border-[#2B5F60]">
+          <div className="mt-2 pt-2 border-t border-oxbowteal">
             <button className="btn mr-2" onClick={handleCreate}>
               <i className="fa-solid fa-plus mr-2"></i>
               เพิ่ม

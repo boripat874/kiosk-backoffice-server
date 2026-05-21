@@ -32,7 +32,8 @@ export default function RootLayout({
             crossOrigin="anonymous"
             referrerPolicy="no-referrer"
           />
-          <link rel="icon" type="image/ico" sizes="32x32" href="https://placehold.co/40x40" />
+          {/* <link rel="icon" type="image/ico" sizes="32x32" href="https://placehold.co/40x40" /> */}
+          <link rel="icon" type="image/ico" sizes="32x32" href="/logo/logobackoffice.ico" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
