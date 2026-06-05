@@ -155,8 +155,8 @@ export default function SignIn() {
               className="oject-contain rounded-2xl" // next/image handles sizing via props, className is for styling
               src={"/img/logobackoffice.png"} // Assuming this path is correct in your public folder
               alt="logo"
-              width={140} // Required width prop
-              height={140} // Required height prop
+              width={250} // Required width prop
+              height={250} // Required height prop
             />
 
           </div>

@@ -221,11 +221,11 @@ export default function Sidebar() {
               href="/backoffice/dashboard"
             >
               <Image
-                className="max-h-[80px] flex flex-row items-center px-2 xl:px-4 object-cover rounded-2xl"
+                className="max-h-[160px] py-2 flex flex-row items-center px-2 xl:px-4 object-cover rounded-2xl"
                 src={
                   true ? "/img/logobackoffice.png" : "https://placehold.co/90x90"
                 }
-                width={100}
+                width={160}
                 height={80}
                 alt="logo"
               />
