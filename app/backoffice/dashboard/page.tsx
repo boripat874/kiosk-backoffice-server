@@ -102,12 +102,12 @@ export default function Dashboard() {
       {
         label: "คนไทย", // Example label
         data: [0], // Example data
-        backgroundColor: "rgba(75, 192, 192, 0.8)",
+        backgroundColor: "rgba(24, 136, 117, 0.8)",
       },
       {
         label: "คนต่างชาติ", // Example label
         data: [0], // Example data
-        backgroundColor: "rgba(255, 159, 64, 0.8)",
+        backgroundColor: "rgba(236, 99, 37, 0.8)",
       },
     ],
   });
@@ -157,13 +157,13 @@ export default function Dashboard() {
         data: [120, 55], // Example counts corresponding to labels
         backgroundColor: [
           // Array of colors for each slice
-          "rgba(75, 192, 192, 0.8)", // Teal
-          "rgba(255, 159, 64, 0.8)", // Orange
+          "rgba(24, 136, 117, 0.8)", // Teal
+          "rgba(236, 99, 37, 0.8)", // Orange
         ],
         borderColor: [
           // Optional: Border colors for slices
-          "rgba(75, 192, 192, 1)",
-          "rgba(255, 159, 64, 1)",
+          "rgba(24, 136, 117, 1)",
+          "rgba(236, 99, 37, 1)",
         ],
         borderWidth: 1,
       },
@@ -244,12 +244,12 @@ export default function Dashboard() {
               {
                 label: "คนไทย", // Example label
                 data: [numbercountnationalidcard], // Example data
-                backgroundColor: "rgba(75, 192, 192, 0.8)",
+                backgroundColor: "rgba(24, 136, 117, 0.8)",
               },
               {
                 label: "คนต่างชาติ", // Example label
                 data: [numbercountpassportcard], // Example data
-                backgroundColor: "rgba(255, 159, 64, 0.8)",
+                backgroundColor: "rgba(236, 99, 37, 0.8)",
               },
             ],
           });
@@ -262,13 +262,13 @@ export default function Dashboard() {
                 data: [typecountnationalidcard, typecountpassportcard], // Example counts corresponding to labels, 55], // Example counts corresponding to labels
                 backgroundColor: [
                   // Array of colors for each slice
-                  "rgba(75, 192, 192, 0.8)", // Teal
-                  "rgba(255, 159, 64, 0.8)", // Orange
+                  "rgba(24, 136, 117, 0.8)", // Teal
+                  "rgba(236, 99, 37, 0.8)", // Orange
                 ],
                 borderColor: [
                   // Optional: Border colors for slices
-                  "rgba(75, 192, 192, 1)",
-                  "rgba(255, 159, 64, 1)",
+                  "rgba(24, 136, 117, 1)",
+                  "rgba(236, 99, 37, 1)",
                 ],
                 borderWidth: 1,
               },
@@ -322,12 +322,12 @@ export default function Dashboard() {
               {
                 label: "คนไทย", // Example label
                 data: [numbercountnationalidcard], // Example data
-                backgroundColor: "rgba(75, 192, 192, 0.8)",
+                backgroundColor: "rgba(24, 136, 117, 0.8)",
               },
               {
                 label: "คนต่างชาติ", // Example label
                 data: [numbercountpassportcard], // Example data
-                backgroundColor: "rgba(255, 159, 64, 0.8)",
+                backgroundColor: "rgba(236, 99, 37, 0.8)",
               },
             ],
           });
@@ -381,13 +381,13 @@ export default function Dashboard() {
                 data: [typecountnationalidcard, typecountpassportcard], // Example counts corresponding to labels, 55], // Example counts corresponding to labels
                 backgroundColor: [
                   // Array of colors for each slice
-                  "rgba(75, 192, 192, 0.8)", // Teal
-                  "rgba(255, 159, 64, 0.8)", // Orange
+                  "rgba(24, 136, 117, 0.8)", // Teal
+                  "rgba(236, 99, 37, 0.8)", // Orange
                 ],
                 borderColor: [
                   // Optional: Border colors for slices
-                  "rgba(75, 192, 192, 1)",
-                  "rgba(255, 159, 64, 1)",
+                  "rgba(24, 136, 117, 1)",
+                  "rgba(236, 99, 37, 1)",
                 ],
                 borderWidth: 1,
               },
