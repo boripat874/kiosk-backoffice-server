@@ -488,7 +488,7 @@ export default function Dashboard() {
             <div className="w-full h-[280px] relative flex-grow p-4 px-10">
               {" "}
               {/* Use flex-grow to fill space, added padding */}
-              {barChartData.datasets[0].data[0] != 0 &&
+              {barChartData.datasets[0].data[0] != 0 ||
               barChartData.datasets[1].data[0] != 0 ? (
                 <Bar data={barChartData} options={barChartOptions} />
               ) : (
@@ -523,7 +523,7 @@ export default function Dashboard() {
 
             {/* chart */}
             <div className="w-full h-[250px] relative flex-grow p-4 px-16">
-              {pieChartData.datasets[0].data[0] != 0 &&
+              {pieChartData.datasets[0].data[0] != 0 ||
               pieChartData.datasets[0].data[1] != 0 ? (
                 // Pass state variables
                 <Pie data={pieChartData} options={pieChartOptions} />
