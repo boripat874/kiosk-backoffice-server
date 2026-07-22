@@ -1,20 +1,41 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const geistSans = Geist({
+const geistSans = localFont({
+  src: [
+    { path: "./fonts/Geist-Thin.ttf", weight: "100", style: "normal" },
+    { path: "./fonts/Geist-ThinItalic.ttf", weight: "100", style: "italic" },
+    { path: "./fonts/Geist-ExtraLight.ttf", weight: "200", style: "normal" },
+    { path: "./fonts/Geist-ExtraLightItalic.ttf", weight: "200", style: "italic" },
+    { path: "./fonts/Geist-Light.ttf", weight: "300", style: "normal" },
+    { path: "./fonts/Geist-LightItalic.ttf", weight: "300", style: "italic" },
+    { path: "./fonts/Geist-Regular.ttf", weight: "400", style: "normal" },
+    { path: "./fonts/Geist-Italic.ttf", weight: "400", style: "italic" },
+    { path: "./fonts/Geist-Medium.ttf", weight: "500", style: "normal" },
+    { path: "./fonts/Geist-MediumItalic.ttf", weight: "500", style: "italic" },
+    { path: "./fonts/Geist-SemiBold.ttf", weight: "600", style: "normal" },
+    { path: "./fonts/Geist-SemiBoldItalic.ttf", weight: "600", style: "italic" },
+    { path: "./fonts/Geist-Bold.ttf", weight: "700", style: "normal" },
+    { path: "./fonts/Geist-BoldItalic.ttf", weight: "700", style: "italic" },
+    { path: "./fonts/Geist-ExtraBold.ttf", weight: "800", style: "normal" },
+    { path: "./fonts/Geist-ExtraBoldItalic.ttf", weight: "800", style: "italic" },
+    { path: "./fonts/Geist-Black.ttf", weight: "900", style: "normal" },
+    { path: "./fonts/Geist-BlackItalic.ttf", weight: "900", style: "italic" },
+  ],
   variable: "--font-geist-sans",
-  subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
+const geistMono = localFont({
+  src: [
+    { path: "./fonts/Geist-Regular.ttf", weight: "400", style: "normal" },
+  ],
   variable: "--font-geist-mono",
-  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Kiosk Backoffice", // เปลี่ยน title ตามต้องการ
-  description: "Kiosk Backoffice Management", // เปลี่ยน description ตามต้องการ
+  title: "Kiosk Backoffice",
+  description: "Kiosk Backoffice Management",
 };
 
 export default function RootLayout({
@@ -25,21 +46,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-            crossOrigin="anonymous"
-            referrerPolicy="no-referrer"
-          />
-          {/* <link rel="icon" type="image/ico" sizes="32x32" href="https://placehold.co/40x40" /> */}
-          <link rel="icon" type="image/ico" sizes="32x32" href="/logo/logobackoffice.ico" />
+        {/* แก้ไขเพิ่มเติม: ใน Next.js สิ่งที่อยู่ในโฟลเดอร์ public ไม่ต้องใส่คำว่า /public ใน path ครับ */}
+        <link rel="stylesheet" href="/css/all.min.css" />
+        <link rel="icon" type="image/ico" sizes="32x32" href="/logo/logobackoffice.ico" />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 
-      >
-        
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>

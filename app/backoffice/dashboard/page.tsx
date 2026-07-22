@@ -226,16 +226,27 @@ export default function Dashboard() {
           setUsers(response.data.users.result);
 
           const numbercountnationalidcard = Number(
+
             response.data.numberusers.countnationalidcard
+
           );
+
           const numbercountpassportcard = Number(
+
             response.data.numberusers.countpassportcard
+
           );
+
           const typecountnationalidcard = Number(
+
             response.data.usertype.countnationalidcard
+
           );
+          
           const typecountpassportcard = Number(
+
             response.data.usertype.countpassportcard
+
           );
 
           setBarChartData({
