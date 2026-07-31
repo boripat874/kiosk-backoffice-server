@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 import Modal from "@/app/modal";
 // import { format } from 'date-fns';
 import Papa from 'papaparse'; // <--- Import Papaparse
-import { formatDate } from 'date-fns';
+// import { formatDate } from 'date-fns';
+import SeclectTime from '@/app/component/SeclectTime';
 
 // Define an interface for the expected user data structure from CSV (adjust based on your CSV columns)
 interface CsvUserData {
@@ -78,7 +79,8 @@ export default function UsersPage() {
   const [nationalidcard, setNationalidcard] = useState("");
   const [passportcard, setPassportcard] = useState("");
   const [phone, setPhone] = useState("");
-  const [expiredate, setExpiredate] = useState("");
+  const [duration, setDuration] = useState("04:00");
+  // const [expiredate, setExpiredate] = useState("");
   // const [create_at, setCreate_at] = useState("");
   // const [expirationdate, setExpirationdate] = useState("");
 
@@ -227,7 +229,8 @@ export default function UsersPage() {
       setNationalidcard(user.idcardnumber || "");
       setPassportcard(user.passportnumber || "");
       setPhone(user.phone || "");
-      setExpiredate(user.expirationdate || "");
+      setDuration(user.duration || "");
+      // setExpiredate(user.expirationdate || "");
       // setCreate_at(user.create_at || "");
     }
 
@@ -267,7 +270,8 @@ export default function UsersPage() {
           "idcardnumber": nationalidcard,
           "passportnumber": passportcard,
           "phone": phone,
-          "expiredate": expiredate
+          "duration": duration,
+          // "expiredate": expiredate
         },
         {
             headers: {
@@ -319,7 +323,8 @@ export default function UsersPage() {
     setNationalidcard("");
     setPassportcard("");
     setPhone("");
-    setExpiredate(formatDate(new Date(), "yyyy-MM-dd"));
+    setDuration("04:00");
+    // setExpiredate(formatDate(new Date(), "yyyy-MM-dd"));
     // setCreate_at("");
 
   };
@@ -342,7 +347,8 @@ export default function UsersPage() {
           "idcardnumber": nationalidcard,
           "passportnumber": passportcard,
           "phone": phone,
-          "expiredate": expiredate
+          "duration": duration,
+          // "expiredate": expiredate
         },
         {
             headers: {
@@ -861,13 +867,14 @@ export default function UsersPage() {
             </div>
 
             <div>
-              <div>เวลาหมดอายุ <span className="text-red-500">*</span></div>
-              <input
+              <div>ระยะเวลาใช้งาน (ชม.) <span className="text-red-500">*</span></div>
+              {/* <input
                 className="mb-2 p-2"
                 type="date"
-                value={expiredate}
-                onChange={(e) => setExpiredate(e.target.value)}
-              />
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
+              /> */}
+              <SeclectTime duration={duration} setDuration={setDuration} />
             </div>
 
 
@@ -1009,13 +1016,21 @@ export default function UsersPage() {
             </div>
 
             <div>
-              <div>เวลาหมดอายุ <span className="text-red-500">*</span></div>
+              {/* <div>เวลาหมดอายุ <span className="text-red-500">*</span></div>
               <input
                 className="mb-2 p-2"
                 type="date"
                 value={expiredate}
                 onChange={(e) => setExpiredate(e.target.value)}
-              />
+              /> */}
+              <div>ระยะเวลาใช้งาน (ชม.) <span className="text-red-500">*</span></div>
+              {/* <input
+                className="mb-2 p-2"
+                type="date"
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
+              /> */}
+              <SeclectTime duration={duration} setDuration={setDuration} />
             </div>
 
           </div>

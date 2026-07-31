@@ -7,7 +7,7 @@ import LoadingSpinner from "@/app/component/LoadingSpinner";
 import { useRouter } from "next/navigation";
 import Modal from "@/app/modal";
 // import { format } from 'date-fns';
-import SeclectTime from '@/app/component/SeclectTime';
+// import SeclectTime from '@/app/component/SeclectTime';
 
 // Define an interface for the group user entry structure
 interface GroupUserEntry {
@@ -35,7 +35,7 @@ export default function GroupUserPage() {
   const [ugroupid, setGroupId] = useState("");
   const [groupname, setGroupname] = useState("");
   // const [remark, setRemark] = useState("");
-  const [duration, setDuration] = useState("05:00");
+  const [duration, setDuration] = useState("04:00");
 
   const [search, setSearch] = useState("");
 
@@ -134,7 +134,7 @@ export default function GroupUserPage() {
     // setGroupId("");
     setGroupname("");
     // setRemark("");
-    setDuration("05:00");
+    setDuration("04:00");
 
   };
 
@@ -380,7 +380,7 @@ export default function GroupUserPage() {
                 <th className="h-12 w-[100px]">วันที่สร้าง</th>
                 <th className="h-12 w-[100px]">ชื่อกลุ่มผู้ใช้</th>
                 {/* <th className="h-12 w-[100px]">รายละเอียด</th> */}
-                <th className="h-12 w-[100px]">ระยะเวลาใช้งาน</th>
+                {/* <th className="h-12 w-[100px]">ระยะเวลาใช้งาน</th> */}
                 <th className="h-12 w-[100px]">Action</th>
               </tr>
             </thead>
@@ -394,7 +394,7 @@ export default function GroupUserPage() {
                   >
                     <td className="h-12 w-[100px]">{groupuser.create_at}</td>
                     <td className="h-12 w-[100px]">{groupuser.groupname}</td>
-                    <td className="h-12 w-[100px]">{groupuser.duration}</td>
+                    {/* <td className="h-12 w-[100px]">{groupuser.duration}</td> */}
 
                     <td className="h-12 w-[100px]">
                       <button
@@ -446,9 +446,9 @@ export default function GroupUserPage() {
               placeholder="กรุณากรอกชื่อกลุ่มผู้ใช้"
             />
 
-            <div>ระยะเวลาใช้งาน <span className="text-red-500">*</span></div>
+            {/* <div>ระยะเวลาใช้งาน <span className="text-red-500">*</span></div>
 
-            <SeclectTime duration={duration} setDuration={setDuration} />
+            <SeclectTime duration={duration} setDuration={setDuration} /> */}
             
             {/* <input
               className="mb-2 p-2"
@@ -475,7 +475,9 @@ export default function GroupUserPage() {
       >
         <div className="flex flex-col gap-2">
           <div className="w-full overflow-y-auto">
+
             <div>ชื่อกลุ่มผู้ใช้ <span className="text-red-500">*</span></div>
+
             <input
               className="mb-2 p-2"
               type="text"
@@ -484,9 +486,9 @@ export default function GroupUserPage() {
               placeholder="กรุณากรอกชื่อกลุ่มผู้ใช้"
             />
 
-            <div>ระยะเวลาใช้งาน <span className="text-red-500">*</span></div>
+            {/* <div>ระยะเวลาใช้งาน <span className="text-red-500">*</span></div>
 
-            <SeclectTime duration={duration} setDuration={setDuration} />
+            <SeclectTime duration={duration} setDuration={setDuration} /> */}
             {/* <input
               className="mb-2 p-2"
               type="time"
