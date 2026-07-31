@@ -229,7 +229,7 @@ export default function UsersPage() {
       setNationalidcard(user.idcardnumber || "");
       setPassportcard(user.passportnumber || "");
       setPhone(user.phone || "");
-      setDuration(user.duration || "");
+      // setDuration(user.duration || "");
       // setExpiredate(user.expirationdate || "");
       // setCreate_at(user.create_at || "");
     }
@@ -260,6 +260,7 @@ export default function UsersPage() {
 
       await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/usersupdate`,{
           "id": userid,
+          "transactionid" :crypto.randomUUID(),
           "ugroupid": ugroupid,
           "routerid": routerid,
           "visitortype": visitortype,
@@ -337,6 +338,7 @@ export default function UsersPage() {
 
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/userscreate`,{
           // "userid": userid,
+          "transactionid" : crypto.randomUUID(),
           "routerid": routerid,
           "ugroupid": ugroupid,
           "visitortype": visitortype,
@@ -867,14 +869,14 @@ export default function UsersPage() {
             </div>
 
             <div>
-              <div>ระยะเวลาใช้งาน (ชม.) <span className="text-red-500">*</span></div>
+              {/* <div>ระยะเวลาใช้งาน (ชม.) <span className="text-red-500">*</span></div> */}
               {/* <input
                 className="mb-2 p-2"
                 type="date"
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
               /> */}
-              <SeclectTime duration={duration} setDuration={setDuration} />
+              {/* <SeclectTime duration={duration} setDuration={setDuration} /> */}
             </div>
 
 

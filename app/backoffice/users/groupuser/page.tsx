@@ -403,14 +403,18 @@ export default function GroupUserPage() {
                       >
                         <i className="fa-solid fa-edit"></i>
                       </button>
-                      <button
-                        className="btn-delete"
-                        onClick={() =>
-                          handleDelete(groupuser.ugroupid as string)
-                        }
-                      >
-                        <i className="fa-solid fa-trash"></i>
-                      </button>
+
+                      {groupuser.ugroupid != "kiosk2025" && (
+
+                        <button
+                          className="btn-delete"
+                          onClick={() =>
+                            handleDelete(groupuser.ugroupid as string)
+                          }
+                        >
+                          <i className="fa-solid fa-trash"></i>
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))
