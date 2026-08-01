@@ -6,7 +6,7 @@ import axios from "axios";
 import LoadingSpinner from "../../component/LoadingSpinner";
 import SeclectTime from '@/app/component/SeclectTime';
 import Modal from "@/app/modal";
-import { set } from 'date-fns';
+// import { set } from 'date-fns';
 
 interface settinglistEntry {
   kioskid: string;
@@ -22,7 +22,7 @@ export default function Setting() {
 
   const [settinglist, setSettinglist] = useState<settinglistEntry[]>([]);
 
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
 
   const [date, setDate] = useState("-");
   const [isLoading, setIsLoading] = useState(false);
@@ -86,9 +86,6 @@ export default function Setting() {
           "Access-Control-Allow-Origin": "*",
           "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
           "Authorization": `Bearer ${localStorage.getItem("token")}`,
-        },
-        params: {
-          search: search
         }
       })
       .then((response) => {
@@ -112,7 +109,7 @@ export default function Setting() {
 
     setIsLoading(false);
 
-  }, [search]);
+  }, []);
 
   const handleEdit = async(id: string) => {
 
