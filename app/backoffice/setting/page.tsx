@@ -143,7 +143,6 @@ export default function Setting() {
     setIsOpen(true);
   };
 
-
   const handleEditSave = async() => {
 
     setIsLoading(true);

@@ -29,6 +29,7 @@ interface ReportEntry {
   user: string | null;
   phone: string | null;
   expiredate: string | null;
+  duration: string | null;
 }
 
 interface ReportHistoryEntry {
@@ -264,6 +265,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
     csvContent += `บัญชีผู้ใช้:,${reportsdetail?.user || '-'}` + "\n";
     csvContent += `เบอร์โทร:,${reportsdetail?.phone || '-'}` + "\n";
     csvContent += `เวลาหมดอายุ:,${reportsdetail?.expiredate || '-'}` + "\n";
+    csvContent += `ระยะเวลาใช้งาน (ชม.): ${reportsdetail?.duration || '-'}` + "\n";
     csvContent += "" + "\n";
     csvContent += headers.join(",") + "\n"; // Header row
     rows.forEach(rowArray => {
@@ -352,6 +354,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
 
         {/* header table */}
         <div className="flex flex-row justify-between items-center">
+
           <div className="flex flex-row justify-between items-center p-4">
             <p className="text-2xl font-bold">
               รายงาน Account Details
@@ -426,6 +429,10 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
 
           <div className=''>
             เวลาหมดอายุ : {reportsdetail?.expiredate || '-'}
+          </div>
+
+          <div className=''>
+            ระยะเวลาใช้งาน (ชม.) : {reportsdetail?.duration || '-'}
           </div>
           
             {/* <thead className="border-b border-oxbowteal bg-white sticky top-0 z-10">

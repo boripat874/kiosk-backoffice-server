@@ -360,7 +360,7 @@ export default function ReportPage() {
                 <th className="h-12 w-[100px]">บัญชีผู้ใช้</th>
                 <th className="h-12 w-[100px]">เบอร์โทร</th>
                 <th className="h-12 w-[100px]">เวลาหมดอายุ</th>
-                <th className="h-12 w-[100px]">ระยะเวลาใช้งาน</th>
+                <th className="h-12 w-[100px]">ระยะเวลาใช้งาน (ชม.)</th>
                 
               </tr>
             </thead>
