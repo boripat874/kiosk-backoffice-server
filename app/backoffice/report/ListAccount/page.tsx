@@ -200,7 +200,7 @@ export default function ReportPage() {
       "พาสปอร์ต",
       "เบอร์โทร",
       "เวลาหมดอายุ",
-      "ระยะเวลาใช้งาน"
+      "ระยะเวลาใช้งาน (ชม.)"
     ];
 
     // Prepare CSV Rows
