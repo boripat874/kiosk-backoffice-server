@@ -593,7 +593,7 @@ export default function Dashboard() {
               <thead className="border-b border-oxbowteal sticky top-0 z-10 bg-white">
                 <tr>
                   {/* <th className='h-12 w-[100px]'>Shop Number</th> */}
-                  <th className="h-12 w-[100px]">วันที่เข้าใช้งานล่าสุด</th>
+                  <th className="h-12 w-[100px]">วันที่ขอเข้าใช้งาน</th>
                   <th className="h-12 w-[100px]">ประเภทผู้มาติดต่อ</th>
                   <th className="h-12 w-[100px]">กลุ่มผู้ใช้</th>
                   <th className="h-12 w-[100px]">ชื่อ นามสกุล</th>
