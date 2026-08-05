@@ -426,6 +426,17 @@ export default function UsersPage() {
                    return;
                }
 
+               // --- เพิ่มเงื่อนไขตรวจสอบจำนวน User เกิน 30 คน ---
+                if (results.data.length > 30) {
+                    Swal.fire({ 
+                        icon: "warning", 
+                        title: "ข้อมูลเกินกำหนด", 
+                        text: `สามารถนำเข้าข้อมูลได้สูงสุดไม่เกิน 30 คน (พบข้อมูลทั้งหมด ${results.data.length} คน)` 
+                    });
+                    setIsLoading(false);
+                    return;
+                }
+
                // ตรวจสอบ expiredate format
               const invalidRows = results.data.filter( 
                 (row) => row.expiredate && !/^([01]\d|2[0-3]):([0-5]\d)$/.test(row.expiredate.trim())
