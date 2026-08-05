@@ -925,6 +925,7 @@ export default function UsersPage() {
               <input
                 className="mb-2 p-2"
                 type="text"
+                value={visitortype}
                 onChange={(e) => setVisitortype(e.target.value)}
                 placeholder="กรุณากรอกประเภทผู้มาติดต่อ"
               />
@@ -1099,6 +1100,7 @@ useEffect(() => {
 
 
 return (
+
   <Modal title="นำเข้าผู้ใช้จาก CSV" isOpen={isOpen} onClose={onClose}>
     <div className="flex flex-col gap-4 p-1">
       <div>
