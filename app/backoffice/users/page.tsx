@@ -315,9 +315,10 @@ export default function UsersPage() {
   // handle clear
   const handleClear = () => {
 
-    setVisitortype("");
+    setVisitortype("ผู้มาติดต่อราชการ");
     setUserid("");
     // setGroupId("");
+    setRouterid("");
     setName("");
     setSurname("");
     setPassword("");
