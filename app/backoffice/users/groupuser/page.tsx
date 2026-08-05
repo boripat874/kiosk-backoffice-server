@@ -18,7 +18,6 @@ interface GroupUserEntry {
   remark?: string | null; // Optional if it might exist in data but isn't used in UI
 }
 
-
 export default function GroupUserPage() {
 
   const [isOpen, setIsOpen] = useState(false);
@@ -170,6 +169,14 @@ export default function GroupUserPage() {
 
   const handleCreate = async() => {
 
+    if (!groupname || groupname.trim().length < 3) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "ชื่อกลุ่มผู้ใช้ต้องมีอย่างน้อย 3 ตัวอักษร",
+      });
+      return;
+    }
     
     try {
       setIsLoading(true);
@@ -187,7 +194,19 @@ export default function GroupUserPage() {
             "Authorization": `Bearer ${localStorage.getItem("token")}`,
           }
         })
-      .then(() => {
+      .then((response) => {
+
+        if(response.data.status == 201){
+                
+          Swal.fire({
+            icon: "warning",
+            title: "ข้อมูลซ้ำ",
+            text: "มีชื่อกลุ่มผู้ใช้นี้อยู่แล้ว",
+          }).then(() => {
+            setIsLoading(false);
+            fetchDataFirst();
+          })
+        }
 
         Swal.fire({
           icon: "success",
@@ -213,6 +232,15 @@ export default function GroupUserPage() {
 
   const handleEditSave = async() => {
 
+    if (!groupname || groupname.trim().length < 3) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "ชื่อกลุ่มผู้ใช้ต้องมีอย่างน้อย 3 ตัวอักษร",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -231,7 +259,19 @@ export default function GroupUserPage() {
             "Authorization": `Bearer ${localStorage.getItem("token")}`,
           }
         })
-      .then(() => {
+      .then((response) => {
+
+        if(response.data.status == 201){
+                
+          Swal.fire({
+            icon: "warning",
+            title: "ข้อมูลซ้ำ",
+            text: "มีชื่อกลุ่มผู้ใช้นี้อยู่แล้ว",
+          }).then(() => {
+            setIsLoading(false);
+            fetchDataFirst();
+          })
+        }
 
         Swal.fire({
           icon: "success",

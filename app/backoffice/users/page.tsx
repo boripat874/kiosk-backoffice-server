@@ -254,6 +254,92 @@ export default function UsersPage() {
 
   const handleEditSave = async() => {
 
+    // 1. name ต้องมีตัวอักษร 3 ตัวขึ้นไป
+    if (!name || name.trim().length < 3) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "ชื่อ (Name) ต้องมีอย่างน้อย 3 ตัวอักษร",
+      });
+      return;
+    }
+
+    // 2. surname ต้องมีตัวอักษร 6 ตัวขึ้นไป
+    if (!surname || surname.trim().length < 3) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "นามสกุล (Surname) ต้องมีอย่างน้อย 3 ตัวอักษร",
+      });
+      return;
+    }
+
+    // 3. ต้องมีการกรอกข้อมูล idcardnumber หรือ passportnumber อย่างใดอย่างหนึ่ง
+    const hasIdCard = nationalidcard && nationalidcard.trim() !== "";
+    const hasPassport = passportcard && passportcard.trim() !== "";
+
+    if (!hasIdCard && !hasPassport) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "กรุณากรอกเลขบัตรประชาชน หรือเลข พาสปอร์ต อย่างใดอย่างหนึ่ง",
+      });
+      return;
+    }
+
+    // 3.1 ถ้ามีข้อมูล idcardnumber ต้องเป็นตัวเลข 13 หลัก
+    if (hasIdCard && !/^\d{13}$/.test(nationalidcard.trim())) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "เลขบัตรประชาชนต้องเป็นตัวเลข 13 หลัก",
+      });
+      return;
+    }
+
+    // 3.2 ถ้ามีข้อมูล passportnumber ต้องเป็นตัวอักษร/ตัวเลข 6 หรือ 7 หลัก
+    if (hasPassport) {
+      const passportLen = passportcard.trim().length;
+      if (passportLen !== 6 && passportLen !== 7) {
+        Swal.fire({
+          icon: "warning",
+          title: "ข้อมูลไม่ถูกต้อง",
+          text: "เลขพาสปอร์ตต้องมีความยาว 6 หรือ 7 หลัก",
+        });
+        return;
+      }
+    }
+
+    // 4. password ต้องมีตัวอักษร 6 ตัวขึ้นไป
+    if (!password || password.length < 6) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "รหัสผ่าน (Password) ต้องมีอย่างน้อย 6 ตัวอักษร",
+      });
+      return;
+    }
+
+    // 5. phone ต้องมีตัวเลข 10 หลัก
+    if (!phone || !/^\d{10}$/.test(phone.trim())) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "เบอร์โทรศัพท์ต้องเป็นตัวเลข 10 หลัก",
+      });
+      return;
+    }
+
+    // 6. visitortype ต้องมีตัวอักษร 1 ตัวขึ้นไป
+    if (!visitortype || visitortype.trim().length < 1) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "กรุณาเลือกหรือระบุประเภทผู้มาติดต่อ (Visitor Type)",
+      });
+      return;
+    }
+
     setIsLoading(true);
 
     try {
@@ -345,11 +431,11 @@ export default function UsersPage() {
     }
 
     // 2. surname ต้องมีตัวอักษร 6 ตัวขึ้นไป
-    if (!surname || surname.trim().length < 6) {
+    if (!surname || surname.trim().length < 3) {
       Swal.fire({
         icon: "warning",
         title: "ข้อมูลไม่ถูกต้อง",
-        text: "นามสกุล (Surname) ต้องมีอย่างน้อย 6 ตัวอักษร",
+        text: "นามสกุล (Surname) ต้องมีอย่างน้อย 3 ตัวอักษร",
       });
       return;
     }
