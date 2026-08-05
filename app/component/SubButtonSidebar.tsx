@@ -136,7 +136,7 @@ function SubButtomSidebar( {countShow,label,data ,hoveraction , children , onCli
           </div>
           {showLabelWithDelay ? (
             <span
-              className={`ml-8 md:ml-2 xl:ml-4 text-[16px] md:text-[10px] xl:text-sm font-semibold ${
+              className={`ml-8 md:ml-2 xl:ml-4 text-[16px] md:text-[10px] xl:text-base font-semibold ${
                 status ? "text-oxbowteal" : "text-white"
               }`}
             >
@@ -196,7 +196,7 @@ function SubButtomSidebar( {countShow,label,data ,hoveraction , children , onCli
           <div key={index} className="w-full flex flex-col justify-start items-start">
             <Link
               href={item.urllink}
-              className={`text-[16px] md:text-[10px] xl:text-sm flex items-center justify-center w-full h-[35px] xl:h-[45px] md:rounded-bl-lg rounded-bl-xl
+              className={`text-[14px] md:text-[10px] xl:text-sm flex items-center justify-center w-full h-[35px] xl:h-[45px] md:rounded-bl-lg rounded-bl-xl
                 ${
                   currentPathname === item.urllink
                     ?  "text-oxbowteal bg-white" // Active link style

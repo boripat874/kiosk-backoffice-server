@@ -401,6 +401,7 @@ export default function UsersPage() {
     setIsLoading(true);
 
     try {
+      
        // Use Papaparse to read and parse the CSV file
        Papa.parse<CsvUserData>(file, { // Use the interface for type safety
            header: true, // Assumes the first row is headers
@@ -425,21 +426,19 @@ export default function UsersPage() {
                }
 
                // ตรวจสอบ expiredate format
-                const invalidRows = results.data.filter(
-                  (row) =>
-                    row.expiredate &&
-                    !/^\d{4}-\d{2}-\d{2}$/.test(row.expiredate.trim())
-                );
+              const invalidRows = results.data.filter( 
+                (row) => row.expiredate && !/^([01]\d|2[0-3]):([0-5]\d)$/.test(row.expiredate.trim())
+              );
 
-                if (invalidRows.length > 0) {
-                  Swal.fire({
-                    icon: "error",
-                    title: "รูปแบบวันหมดอายุไม่ถูกต้อง",
-                    text: `กรุณาใช้รูปแบบ yyyy-mm-dd`,
-                  });
-                  setIsLoading(false);
-                  return;
-                }
+              if (invalidRows.length > 0) {
+                Swal.fire({
+                  icon: "error",
+                  title: "รูปแบบเวลาไม่ถูกต้อง",
+                  text: `กรุณาใช้รูปแบบ HH:mm`,
+                });
+                setIsLoading(false);
+                return;
+              }
 
                // --- Prepare data for the API ---
                // Assuming your API expects an object like: { ugroupid: "...", userslist: [...] }
