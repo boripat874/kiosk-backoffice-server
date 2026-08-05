@@ -445,6 +445,7 @@ export default function UsersPage() {
                // Adjust the 'userslist' array structure based on your API requirements
                const apiPayload = {
                    ugroupid: selectedGroupId,
+                   transactionid : crypto.randomUUID(),
                    users: results.data.map(row => ({
                        // Map CSV columns (keys from PapaParse with header:true) to API fields
                        visitortype: row.visitortype || "", // Provide defaults if needed
