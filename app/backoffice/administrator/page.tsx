@@ -203,16 +203,19 @@ export default function UsersPage() {
         })
       .then((response) => {
 
-        if(response.data.status == "201"){
+        if (response.data && (response.data.status === "201" || response.data.status === 201)) {
         
           Swal.fire({
             icon: "warning",
             title: "ข้อมูลซ้ำ",
             text: "มีผู้ใช้งานนี้อยู่แล้ว",
+            timer: 1000,
           }).then(() => {
             setIsLoading(false);
             fetchDataFirst();
           })
+
+          return; // Exit the function early if duplicate
         }
 
         Swal.fire({
@@ -289,16 +292,19 @@ export default function UsersPage() {
         })
       .then((response) => {
 
-        if(response.data.status == "201"){
+        if (response.data && (response.data.status === "201" || response.data.status === 201)) {
         
           Swal.fire({
             icon: "warning",
             title: "ข้อมูลซ้ำ",
             text: "มีผู้ใช้งานนี้อยู่แล้ว",
+            timer: 1000,
           }).then(() => {
             setIsLoading(false);
             fetchDataFirst();
           })
+
+          return; // Exit the function early if duplicate
         }
 
         Swal.fire({
