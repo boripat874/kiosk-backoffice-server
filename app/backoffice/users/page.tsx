@@ -394,7 +394,7 @@ export default function UsersPage() {
   const handleImport = async(file: File | null, selectedGroupId: string) => {
 
     if (!file || !selectedGroupId) {
-      Swal.fire({ icon: "warning", title: "ข้อมูลไม่ครบ", text: "กรุณาเลือกกลุ่มผู้ใช้และไฟล์ CSV" });
+      Swal.fire({ icon: "warning", title: "ข้อมูลไม่ครบ", text: "กรุณาเลือกไฟล์ CSV" });
       return;
     }
 
@@ -465,11 +465,11 @@ export default function UsersPage() {
                try {
                    // *** Replace with your actual import endpoint ***
                    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/usersimport`, apiPayload, {
-                      headers: {
-                         'Content-Type': 'application/json', // Send as JSON
-                         "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
-                         "Authorization": `Bearer ${localStorage.getItem("token")}`,
-                      },
+                    headers: {
+                        'Content-Type': 'application/json', // Send as JSON
+                        "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
+                        "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                    },
                    });
 
                    // Assuming API returns success message or count
@@ -479,7 +479,7 @@ export default function UsersPage() {
                     showConfirmButton: false ,
                     timer: 1000
 
-                  }); // Show confirm button for success
+                    }); // Show confirm button for success
                    fetchDataFirst(); // Refresh the user list
                    handleCloseModal(); // Close the import modal
 
