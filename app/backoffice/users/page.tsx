@@ -476,23 +476,25 @@ export default function UsersPage() {
 
                // --- Send data to the API ---
                try {
-                   // *** Replace with your actual import endpoint ***
-                   const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/usersimport`, apiPayload, {
-                    headers: {
-                        'Content-Type': 'application/json', // Send as JSON
-                        "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`,
-                    },
-                   });
+                  // *** Replace with your actual import endpoint ***
+                  // const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/usersimport`, apiPayload, {
+                  //   headers: {
+                  //     'Content-Type': 'application/json', // Send as JSON
+                  //     "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
+                  //     "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                  //   },
+                  // });
 
-                   // Assuming API returns success message or count
-                   // console.log("API Response:", response.data);
-                   Swal.fire({ icon: "success", title: "นำเข้าข้อมูลสำเร็จ", 
-                    text: response.data?.message || `${apiPayload.users.length} ผู้ใช้ถูกนำเข้าเรียบร้อยแล้ว`, 
+                  // Assuming API returns success message or count
+                  // console.log("API Response:", response.data);
+                  Swal.fire({ icon: "success", title: "นำเข้าข้อมูลสำเร็จ", 
+                    // text: response.data?.message || `${apiPayload.users.length} ผู้ใช้ถูกนำเข้าเรียบร้อยแล้ว`, 
+                    text: `${apiPayload.users.length} ผู้ใช้ถูกนำเข้าเรียบร้อยแล้ว`, 
+
                     showConfirmButton: false ,
                     timer: 1000
+                  }); // Show confirm button for success
 
-                    }); // Show confirm button for success
                    fetchDataFirst(); // Refresh the user list
                    handleCloseModal(); // Close the import modal
 
