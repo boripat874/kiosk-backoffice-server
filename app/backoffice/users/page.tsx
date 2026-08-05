@@ -391,142 +391,190 @@ export default function UsersPage() {
 
   }
 
-  // --- Handle CSV Import Submission ---
-  const handleImport = async(file: File | null, selectedGroupId: string) => {
+// --- Handle CSV Import Submission ---
+const handleImport = async (file: File | null, selectedGroupId: string) => {
+  if (!file || !selectedGroupId) {
+    Swal.fire({ icon: "warning", title: "ข้อมูลไม่ครบ", text: "กรุณาเลือกไฟล์ CSV และกลุ่มผู้ใช้งาน" });
+    return;
+  }
 
-    if (!file || !selectedGroupId) {
-      Swal.fire({ icon: "warning", title: "ข้อมูลไม่ครบ", text: "กรุณาเลือกไฟล์ CSV" });
-      return;
-    }
+  setIsLoading(true);
 
-    setIsLoading(true);
+  try {
+    // Use Papaparse to read and parse the CSV file
+    Papa.parse<CsvUserData>(file, {
+      header: true, // Assumes the first row is headers
+      skipEmptyLines: true,
+      complete: async (results) => {
+        console.log("Parsed CSV Data:", results.data);
 
-    try {
-      
-       // Use Papaparse to read and parse the CSV file
-       Papa.parse<CsvUserData>(file, { // Use the interface for type safety
-           header: true, // Assumes the first row is headers
-           skipEmptyLines: true,
-           complete: async (results) => {
-               console.log("Parsed CSV Data:", results.data);
-               // console.log("Parsing Errors:", results.errors);
+        // 1. ตรวจสอบ Error จากการ Parse CSV
+        if (results.errors.length > 0) {
+          console.error("CSV Parsing Errors:", results.errors);
+          const errorMessages = results.errors.map(err => `Row ${err.row}: ${err.message}`).join('\n');
+          Swal.fire({
+            icon: "error",
+            title: "ข้อผิดพลาดในการอ่านไฟล์ CSV",
+            text: `พบปัญหาในไฟล์:\n${errorMessages.substring(0, 200)}...`
+          });
+          setIsLoading(false);
+          return;
+        }
 
-               if (results.errors.length > 0) {
-                   console.error("CSV Parsing Errors:", results.errors);
-                   // Show more specific error if possible
-                   const errorMessages = results.errors.map(err => `Row ${err.row}: ${err.message}`).join('\n');
-                   Swal.fire({ icon: "error", title: "ข้อผิดพลาดในการอ่านไฟล์ CSV", text: `พบปัญหาในไฟล์:\n${errorMessages.substring(0, 200)}...` }); // Limit error message length
-                   setIsLoading(false);
-                   return;
-               }
+        // 2. ตรวจสอบว่ามีข้อมูลหรือไม่
+        if (!results.data || results.data.length === 0) {
+          Swal.fire({ icon: "warning", title: "ไฟล์ว่างเปล่า", text: "ไม่พบข้อมูลผู้ใช้ในไฟล์ CSV ที่เลือก" });
+          setIsLoading(false);
+          return;
+        }
 
-               if (!results.data || results.data.length === 0) {
-                   Swal.fire({ icon: "warning", title: "ไฟล์ว่างเปล่า", text: "ไม่พบข้อมูลผู้ใช้ในไฟล์ CSV ที่เลือก" });
-                   setIsLoading(false);
-                   return;
-               }
+        // 3. ตรวจสอบจำนวน User ไม่ให้เกิน 30 รายการ
+        if (results.data.length > 30) {
+          Swal.fire({
+            icon: "warning",
+            title: "ข้อมูลเกินกำหนด",
+            text: `สามารถนำเข้าข้อมูลได้สูงสุดไม่เกิน 30 User ต่อครั้ง (พบข้อมูลทั้งหมด ${results.data.length} User)`
+          });
+          setIsLoading(false);
+          return;
+        }
 
-               // --- เพิ่มเงื่อนไขตรวจสอบจำนวน User เกิน 30 คน ---
-                if (results.data.length > 30) {
-                    Swal.fire({ 
-                        icon: "warning", 
-                        title: "ข้อมูลเกินกำหนด", 
-                        text: `สามารถนำเข้าข้อมูลได้สูงสุดไม่เกิน 30 คน (พบข้อมูลทั้งหมด ${results.data.length} คน)` 
-                    });
-                    setIsLoading(false);
-                    return;
-                }
+        // --- 4. ตรวจสอบความถูกต้องของข้อมูลในแต่ละ Row (Validation) ---
+        const validationErrors: string[] = [];
 
-               // ตรวจสอบ expiredate format
-              const invalidRows = results.data.filter( 
-                (row) => row.expiredate && !/^([01]\d|2[0-3]):([0-5]\d)$/.test(row.expiredate.trim())
-              );
+        results.data.forEach((row, index) => {
+          const rowNum = index + 2; // +2 เพราะ Row 1 คือ Header ใน CSV
 
-              if (invalidRows.length > 0) {
-                Swal.fire({
-                  icon: "error",
-                  title: "รูปแบบเวลาไม่ถูกต้อง",
-                  text: `กรุณาใช้รูปแบบ HH:mm`,
-                });
-                setIsLoading(false);
-                return;
-              }
+          const visitortype = row.visitortype?.trim();
+          const name = row.name?.trim();
+          const surname = row.surname?.trim();
+          const password = row.password?.trim();
+          const idcardnumber = row.idcardnumber?.trim();
+          const passportnumber = row.passportnumber?.trim();
+          const phone = row.phone?.trim();
+          const expiredate = row.expiredate?.trim();
 
-               // --- Prepare data for the API ---
-               // Assuming your API expects an object like: { ugroupid: "...", userslist: [...] }
-               // Adjust the 'userslist' array structure based on your API requirements
-               const apiPayload = {
-                   ugroupid: selectedGroupId,
-                   transactionid : crypto.randomUUID(),
-                   users: results.data.map(row => ({
-                       // Map CSV columns (keys from PapaParse with header:true) to API fields
-                       visitortype: row.visitortype || "", // Provide defaults if needed
-                       name: row.name || "",             // Ensure required fields exist
-                       surname: row.surname || "",
-                       password: row.password || "",       // Ensure password is included if required by API
-                       idcardnumber: row.idcardnumber || "",
-                       passportnumber: row.passportnumber || "",
-                       phone: row.phone || "",
-                       expiredate: row.expiredate || "",
-                       // Add other necessary fields expected by your API
-                   })).filter(user => user.name) // Example: Filter out rows without a name
-               };
+          // Rule 1: ต้องมีการกรอก visitortype
+          if (!visitortype) {
+            validationErrors.push(`แถวที่ ${rowNum}: กรุณากรอกประเภทผู้มาติดต่อ (visitortype)`);
+          }
 
-               // console.log("API Payload:", apiPayload);
+          // Rule 2: ต้องมีการกรอก name
+          if (!name) {
+            validationErrors.push(`แถวที่ ${rowNum}: กรุณากรอกชื่อ (name)`);
+          }
 
-               // --- Send data to the API ---
-               try {
-                  // *** Replace with your actual import endpoint ***
-                  // const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/usersimport`, apiPayload, {
-                  //   headers: {
-                  //     'Content-Type': 'application/json', // Send as JSON
-                  //     "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
-                  //     "Authorization": `Bearer ${localStorage.getItem("token")}`,
-                  //   },
-                  // });
+          // Rule 3: ต้องมีการกรอก surname
+          if (!surname) {
+            validationErrors.push(`แถวที่ ${rowNum}: กรุณากรอกนามสกุล (surname)`);
+          }
 
-                  // Assuming API returns success message or count
-                  // console.log("API Response:", response.data);
-                  Swal.fire({ icon: "success", title: "นำเข้าข้อมูลสำเร็จ", 
-                    // text: response.data?.message || `${apiPayload.users.length} ผู้ใช้ถูกนำเข้าเรียบร้อยแล้ว`, 
-                    text: `${apiPayload.users.length} ผู้ใช้ถูกนำเข้าเรียบร้อยแล้ว`, 
+          // Rule 4: ต้องมีการกรอก password 6 หลักขึ้นไป
+          if (!password || password.length < 6) {
+            validationErrors.push(`แถวที่ ${rowNum}: รหัสผ่าน (password) ต้องมีความยาวอย่างน้อย 6 ตัวอักษร`);
+          }
 
-                    showConfirmButton: false ,
-                    timer: 1000
-                  }); // Show confirm button for success
+          // Rule 5: ต้องมีการกรอก idcardnumber 13 หลัก (ตัวเลขเท่านั้น)
+          if (!idcardnumber || !/^\d{13}$/.test(idcardnumber)) {
+            validationErrors.push(`แถวที่ ${rowNum}: เลขบัตรประชาชน (idcardnumber) ต้องเป็นตัวเลข 13 หลัก`);
+          }
 
-                   fetchDataFirst(); // Refresh the user list
-                   handleCloseModal(); // Close the import modal
+          // Rule 6: ต้องมีการกรอก passportnumber 6 หรือ 7 หลัก
+          if (!passportnumber || !/^[a-zA-Z0-9]{6,7}$/.test(passportnumber)) {
+            validationErrors.push(`แถวที่ ${rowNum}: เลขพาสปอร์ต (passportnumber) ต้องมี 6 ถึง 7 หลัก`);
+          }
 
-               } catch (apiError) {
-                   console.error("Error sending data to API:", apiError);
-                   let errorMessage = "เกิดข้อผิดพลาดระหว่างการส่งข้อมูลไปยังเซิร์ฟเวอร์";
-                   if (axios.isAxiosError(apiError) && apiError.response?.data?.message) {
-                       errorMessage = apiError.response.data.message; // Use server's error message if available
-                   }
-                   Swal.fire({ icon: "error", title: "นำเข้าข้อมูลล้มเหลว", text: errorMessage });
-                  //  if (axios.isAxiosError(apiError) && apiError.response?.status === 401) {
-                  //     router.push('/login');
-                  //  }
-               } finally {
-                  setIsLoading(false); // Ensure loading is turned off after API call attempt
-               }
-           },
-           error: (error: Error) => {
-               console.error("Error reading file:", error);
-               Swal.fire({ icon: "error", title: "เกิดข้อผิดพลาด", text: "ไม่สามารถอ่านไฟล์ที่เลือกได้" });
-               setIsLoading(false);
-           }
-       });
+          // Rule 7: ต้องมีการกรอก phone 10 หลัก (ตัวเลขเท่านั้น)
+          if (!phone || !/^\d{10}$/.test(phone)) {
+            validationErrors.push(`แถวที่ ${rowNum}: เบอร์โทรศัพท์ (phone) ต้องเป็นตัวเลข 10 หลัก`);
+          }
 
-    } catch (error) {
-       // Catch unexpected errors during setup
-       console.error("Unexpected error during import setup:", error);
-       Swal.fire({ icon: "error", title: "เกิดข้อผิดพลาด", text: "กรุณาลองใหม่อีกครั้ง" });
-       setIsLoading(false);
-    }
-    // Note: setIsLoading(false) is handled within the Papa.parse callbacks (complete/error)
- }
+          // ตรวจสอบ expiredate format (HH:mm) ถ้ามีการกรอก
+          if (expiredate && !/^([01]\d|2[0-3]):([0-5]\d)$/.test(expiredate)) {
+            validationErrors.push(`แถวที่ ${rowNum}: รูปแบบเวลาหมดอายุ (expiredate) ต้องเป็น HH:mm`);
+          }
+        });
+
+        // หากพบข้อผิดพลาดในการตรวจสอบข้อมูล
+        if (validationErrors.length > 0) {
+          Swal.fire({
+            icon: "error",
+            title: "ข้อมูลใน CSV ไม่ถูกต้อง",
+            html: `
+              <div style="text-align: left; max-height: 250px; overflow-y: auto; font-size: 14px; color: #d33;">
+                <ul style="padding-left: 20px; margin: 0;">
+                  ${validationErrors.map(err => `<li>${err}</li>`).join('')}
+                </ul>
+              </div>
+            `
+          });
+          setIsLoading(false);
+          return;
+        }
+
+        // --- Prepare data for the API ---
+        const apiPayload = {
+          ugroupid: selectedGroupId,
+          transactionid: crypto.randomUUID(),
+          users: results.data.map(row => ({
+            visitortype: row.visitortype?.trim() || "",
+            name: row.name?.trim() || "",
+            surname: row.surname?.trim() || "",
+            password: row.password?.trim() || "",
+            idcardnumber: row.idcardnumber?.trim() || "",
+            passportnumber: row.passportnumber?.trim() || "",
+            phone: row.phone?.trim() || "",
+            expiredate: row.expiredate?.trim() || "",
+          }))
+        };
+
+        // --- Send data to the API ---
+        try {
+          // const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/usersimport`, apiPayload, {
+          //   headers: {
+          //     'Content-Type': 'application/json',
+          //     "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
+          //     "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          //   },
+          // });
+
+          Swal.fire({
+            icon: "success",
+            title: "นำเข้าข้อมูลสำเร็จ",
+            // text: response.data?.message || `${apiPayload.users.length} ผู้ใช้ถูกนำเข้าเรียบร้อยแล้ว`,
+            text: `${apiPayload.users.length} ผู้ใช้ถูกนำเข้าเรียบร้อยแล้ว`,
+
+            showConfirmButton: false,
+            timer: 1500
+          });
+
+          fetchDataFirst(); // Refresh the user list
+          handleCloseModal(); // Close the import modal
+
+        } catch (apiError) {
+          console.error("Error sending data to API:", apiError);
+          let errorMessage = "เกิดข้อผิดพลาดระหว่างการส่งข้อมูลไปยังเซิร์ฟเวอร์";
+          if (axios.isAxiosError(apiError) && apiError.response?.data?.message) {
+            errorMessage = apiError.response.data.message;
+          }
+          Swal.fire({ icon: "error", title: "นำเข้าข้อมูลล้มเหลว", text: errorMessage });
+        } finally {
+          setIsLoading(false);
+        }
+      },
+      error: (error: Error) => {
+        console.error("Error reading file:", error);
+        Swal.fire({ icon: "error", title: "เกิดข้อผิดพลาด", text: "ไม่สามารถอ่านไฟล์ที่เลือกได้" });
+        setIsLoading(false);
+      }
+    });
+
+  } catch (error) {
+    console.error("Unexpected error during import setup:", error);
+    Swal.fire({ icon: "error", title: "เกิดข้อผิดพลาด", text: "กรุณาลองใหม่อีกครั้ง" });
+    setIsLoading(false);
+  }
+};
  
   // handle delete
   const handleDelete = async(id: string) => {
