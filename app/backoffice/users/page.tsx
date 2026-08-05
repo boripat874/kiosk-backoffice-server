@@ -333,9 +333,95 @@ export default function UsersPage() {
 
   // handle add
   const handleCreate = async() => {
-    setIsLoading(true);
 
+    // 1. name ต้องมีตัวอักษร 3 ตัวขึ้นไป
+    if (!name || name.trim().length < 3) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "ชื่อ (Name) ต้องมีอย่างน้อย 3 ตัวอักษร",
+      });
+      return;
+    }
+
+    // 2. surname ต้องมีตัวอักษร 6 ตัวขึ้นไป
+    if (!surname || surname.trim().length < 6) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "นามสกุล (Surname) ต้องมีอย่างน้อย 6 ตัวอักษร",
+      });
+      return;
+    }
+
+    // 3. ต้องมีการกรอกข้อมูล idcardnumber หรือ passportnumber อย่างใดอย่างหนึ่ง
+    const hasIdCard = nationalidcard && nationalidcard.trim() !== "";
+    const hasPassport = passportcard && passportcard.trim() !== "";
+
+    if (!hasIdCard && !hasPassport) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "กรุณากรอกเลขบัตรประชาชน หรือเลข พาสปอร์ต อย่างใดอย่างหนึ่ง",
+      });
+      return;
+    }
+
+    // 3.1 ถ้ามีข้อมูล idcardnumber ต้องเป็นตัวเลข 13 หลัก
+    if (hasIdCard && !/^\d{13}$/.test(nationalidcard.trim())) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "เลขบัตรประชาชนต้องเป็นตัวเลข 13 หลัก",
+      });
+      return;
+    }
+
+    // 3.2 ถ้ามีข้อมูล passportnumber ต้องเป็นตัวอักษร/ตัวเลข 6 หรือ 7 หลัก
+    if (hasPassport) {
+      const passportLen = passportcard.trim().length;
+      if (passportLen !== 6 && passportLen !== 7) {
+        Swal.fire({
+          icon: "warning",
+          title: "ข้อมูลไม่ถูกต้อง",
+          text: "เลขพาสปอร์ตต้องมีความยาว 6 หรือ 7 หลัก",
+        });
+        return;
+      }
+    }
+
+    // 4. password ต้องมีตัวอักษร 6 ตัวขึ้นไป
+    if (!password || password.length < 6) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "รหัสผ่าน (Password) ต้องมีอย่างน้อย 6 ตัวอักษร",
+      });
+      return;
+    }
+
+    // 5. phone ต้องมีตัวเลข 10 หลัก
+    if (!phone || !/^\d{10}$/.test(phone.trim())) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "เบอร์โทรศัพท์ต้องเป็นตัวเลข 10 หลัก",
+      });
+      return;
+    }
+
+    // 6. visitortype ต้องมีตัวอักษร 1 ตัวขึ้นไป
+    if (!visitortype || visitortype.trim().length < 1) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "กรุณาเลือกหรือระบุประเภทผู้มาติดต่อ (Visitor Type)",
+      });
+      return;
+    }
+    
     try {
+      setIsLoading(true);
 
       await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/userscreate`,{
           // "userid": userid,
@@ -474,14 +560,20 @@ const handleImport = async (file: File | null, selectedGroupId: string) => {
             validationErrors.push(`แถวที่ ${rowNum}: รหัสผ่าน (password) ต้องมีความยาวอย่างน้อย 6 ตัวอักษร`);
           }
 
-          // Rule 5: ต้องมีการกรอก idcardnumber 13 หลัก (ตัวเลขเท่านั้น)
-          if (!idcardnumber || !/^\d{13}$/.test(idcardnumber)) {
-            validationErrors.push(`แถวที่ ${rowNum}: เลขบัตรประชาชน (idcardnumber) ต้องเป็นตัวเลข 13 หลัก`);
-          }
+          if(!idcardnumber && !passportnumber){
 
-          // Rule 6: ต้องมีการกรอก passportnumber 6 หรือ 7 หลัก
-          if (!passportnumber || !/^[a-zA-Z0-9]{6,7}$/.test(passportnumber)) {
-            validationErrors.push(`แถวที่ ${rowNum}: เลขพาสปอร์ต (passportnumber) ต้องมี 6 ถึง 7 หลัก`);
+            validationErrors.push(`แถวที่ ${rowNum}: กรุณากรอกเลขบัตรประชาชน (idcardnumber) หรือ เลขพาสปอร์ต (passportnumber)`);
+
+          }else{
+
+            // Rule 5: ต้องมีการกรอก idcardnumber 13 หลัก (ตัวเลขเท่านั้น)
+            if (idcardnumber && !/^\d{13}$/.test(idcardnumber)) {
+              validationErrors.push(`แถวที่ ${rowNum}: เลขบัตรประชาชน (idcardnumber) ต้องเป็นตัวเลข 13 หลัก`);
+
+            }else if (passportnumber && !/^[a-zA-Z0-9]{6,7}$/.test(passportnumber)) { // Rule 6: ต้องมีการกรอก passportnumber 6 หรือ 7 หลัก
+
+              validationErrors.push(`แถวที่ ${rowNum}: เลขพาสปอร์ต (passportnumber) ต้องมี 6 ถึง 7 หลัก`);
+            }
           }
 
           // Rule 7: ต้องมีการกรอก phone 10 หลัก (ตัวเลขเท่านั้น)
@@ -530,19 +622,19 @@ const handleImport = async (file: File | null, selectedGroupId: string) => {
 
         // --- Send data to the API ---
         try {
-          // const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/usersimport`, apiPayload, {
-          //   headers: {
-          //     'Content-Type': 'application/json',
-          //     "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
-          //     "Authorization": `Bearer ${localStorage.getItem("token")}`,
-          //   },
-          // });
+          const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/usersimport`, apiPayload, {
+            headers: {
+              'Content-Type': 'application/json',
+              "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY,
+              "Authorization": `Bearer ${localStorage.getItem("token")}`,
+            },
+          });
 
           Swal.fire({
             icon: "success",
             title: "นำเข้าข้อมูลสำเร็จ",
-            // text: response.data?.message || `${apiPayload.users.length} ผู้ใช้ถูกนำเข้าเรียบร้อยแล้ว`,
-            text: `${apiPayload.users.length} ผู้ใช้ถูกนำเข้าเรียบร้อยแล้ว`,
+            text: response.data?.message || `${apiPayload.users.length} ผู้ใช้ถูกนำเข้าเรียบร้อยแล้ว`,
+            // text: `${apiPayload.users.length} ผู้ใช้ถูกนำเข้าเรียบร้อยแล้ว`,
 
             showConfirmButton: false,
             timer: 1500

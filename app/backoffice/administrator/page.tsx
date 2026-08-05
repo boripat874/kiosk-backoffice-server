@@ -154,6 +154,34 @@ export default function UsersPage() {
 
   const handleEditSave = async() => {
 
+    // 1. Validation Checks
+    if (!name || name.trim().length < 1) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "ชื่อ (Name) ต้องมีอย่างน้อย 1 ตัวอักษร",
+      });
+      return;
+    }
+
+    if (!username || username.trim().length < 6) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "ชื่อผู้ใช้ (Username) ต้องมีอย่างน้อย 6 ตัวอักษร",
+      });
+      return;
+    }
+
+    if (!password || password.length < 6) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "รหัสผ่าน (Password) ต้องมีอย่างน้อย 6 ตัวอักษร",
+      });
+      return;
+    }
+
     try{
       setIsLoading(true);
 
@@ -173,7 +201,19 @@ export default function UsersPage() {
             "Authorization": `Bearer ${localStorage.getItem("token")}`,
           }
         })
-      .then(() => {
+      .then((response) => {
+
+        if(response.data.status == 201){
+        
+          Swal.fire({
+            icon: "warning",
+            title: "ข้อมูลซ้ำ",
+            text: "มีผู้ใช้งานนี้อยู่แล้ว",
+          }).then(() => {
+            setIsLoading(false);
+            fetchDataFirst();
+          })
+        }
 
         Swal.fire({
           icon: "success",
@@ -200,6 +240,34 @@ export default function UsersPage() {
   }
 
   const handleCreate = async() => {
+
+    // 1. Validation Checks
+    if (!name || name.trim().length < 1) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "ชื่อ (Name) ต้องมีอย่างน้อย 1 ตัวอักษร",
+      });
+      return;
+    }
+
+    if (!username || username.trim().length < 6) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "ชื่อผู้ใช้ (Username) ต้องมีอย่างน้อย 6 ตัวอักษร",
+      });
+      return;
+    }
+
+    if (!password || password.length < 6) {
+      Swal.fire({
+        icon: "warning",
+        title: "ข้อมูลไม่ถูกต้อง",
+        text: "รหัสผ่าน (Password) ต้องมีอย่างน้อย 6 ตัวอักษร",
+      });
+      return;
+    }
     
     try {
       setIsLoading(true);
@@ -219,7 +287,19 @@ export default function UsersPage() {
             "Authorization": `Bearer ${localStorage.getItem("token")}`,
           }
         })
-      .then(() => {
+      .then((response) => {
+
+        if(response.data.status == 201){
+        
+          Swal.fire({
+            icon: "warning",
+            title: "ข้อมูลซ้ำ",
+            text: "มีผู้ใช้งานนี้อยู่แล้ว",
+          }).then(() => {
+            setIsLoading(false);
+            fetchDataFirst();
+          })
+        }
 
         Swal.fire({
           icon: "success",
