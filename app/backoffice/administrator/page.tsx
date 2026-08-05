@@ -203,7 +203,7 @@ export default function UsersPage() {
         })
       .then((response) => {
 
-        if(response.data.status == 201){
+        if(response.data.status == "201"){
         
           Swal.fire({
             icon: "warning",
@@ -289,7 +289,7 @@ export default function UsersPage() {
         })
       .then((response) => {
 
-        if(response.data.status == 201){
+        if(response.data.status == "201"){
         
           Swal.fire({
             icon: "warning",
