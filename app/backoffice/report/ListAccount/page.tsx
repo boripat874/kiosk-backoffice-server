@@ -272,6 +272,13 @@ export default function ReportPage() {
   if (isLoading) {
     return <LoadingSpinner />;
   }
+
+  // ฟังก์ชันสำหรับเซนเซอร์ข้อมูล (แสดง 3 ตัวแรก + XXXX)
+  const maskValue = (value?: string | number) => {
+    if (!value) return "-";
+    const str = String(value);
+    return str.length > 3 ? `${str.slice(0, 3)}XXXX` : str;
+  };
   
   return (
     
@@ -380,10 +387,10 @@ export default function ReportPage() {
                     <td className='h-12 w-[100px]'>{report.visitortype}</td>
                     <td className='h-12 w-[100px]'>{report.groupname}</td>
                     <td className='h-12 w-[100px]'>{report.name} {report.surname}</td>
-                    <td className='h-12 w-[100px]'>{report.idcardnumber}</td>
-                    <td className='h-12 w-[100px]'>{report.passportnumber}</td>
+                    <td className='h-12 w-[100px]'>{report.idcardnumber ? maskValue(report.idcardnumber) : '-'}</td>
+                    <td className='h-12 w-[100px]'>{report.passportnumber ? maskValue(report.passportnumber) : '-'}</td>
                     <td className='h-12 w-[100px]'>{report.user}</td>
-                    <td className='h-12 w-[100px]'>{report.phone}</td>
+                    <td className='h-12 w-[100px]'>{report.phone ? maskValue(report.phone) : '-'}</td>
                     <td className='h-12 w-[100px]'>{report.expiredate}</td>
                     <td className='h-12 w-[100px]'>{report.duration}</td>
 

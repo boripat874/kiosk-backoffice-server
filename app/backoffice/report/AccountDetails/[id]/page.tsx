@@ -319,6 +319,13 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
   if (isLoading) {
     return <LoadingSpinner />;
   }
+
+  // ฟังก์ชันสำหรับเซนเซอร์ข้อมูล (แสดง 3 ตัวแรก + XXXX)
+  const maskValue = (value?: string | number) => {
+    if (!value) return "-";
+    const str = String(value);
+    return str.length > 3 ? `${str.slice(0, 3)}XXXX` : str;
+  };
   
   return (
     
@@ -412,11 +419,11 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
           </div>
 
           <div className=''>
-            บัตรประชาชน : {reportsdetail?.idcardnumber || '-'}
+            บัตรประชาชน : {reportsdetail?.idcardnumber? maskValue(reportsdetail?.idcardnumber) : '-'}
           </div>
 
           <div className=''>
-            พาสปอร์ต : {reportsdetail?.passportnumber || '-'}
+            พาสปอร์ต : {reportsdetail?.passportnumber? maskValue(reportsdetail?.passportnumber) : '-'}
           </div>
 
           <div className=''>
@@ -424,7 +431,7 @@ export default function ReportDetailPage({ params }: { params: Promise<{ id: str
           </div>
 
           <div className=''>
-            เบอร์โทร : {reportsdetail?.phone || '-'}
+            เบอร์โทร : {reportsdetail?.phone ? maskValue(reportsdetail?.phone) : '-'}
           </div>
 
           <div className=''>

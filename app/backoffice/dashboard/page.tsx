@@ -457,6 +457,13 @@ export default function Dashboard() {
     return <LoadingSpinner />;
   }
 
+  // ฟังก์ชันสำหรับเซนเซอร์ข้อมูล (แสดง 3 ตัวแรก + XXXX)
+  const maskValue = (value?: string | number) => {
+    if (!value) return "-";
+    const str = String(value);
+    return str.length > 3 ? `${str.slice(0, 3)}XXXX` : str;
+  };
+
   return (
     <div>
 
@@ -635,9 +642,9 @@ export default function Dashboard() {
                       <td className="h-12 w-[100px]">
                         {user.name} {user.surname}
                       </td>
-                      <td className="h-12 w-[100px]">{user.idcardnumber}</td>
-                      <td className="h-12 w-[100px]">{user.passportnumber}</td>
-                      <td className="h-12 w-[100px]">{user.phone}</td>
+                      <td className="h-12 w-[100px]">{maskValue(user.idcardnumber?.toString())}</td>
+                      <td className="h-12 w-[100px]">{maskValue(user.passportnumber?.toString())}</td>
+                      <td className="h-12 w-[100px]">{maskValue(user.phone?.toString())}</td>
                       <td className="h-12 w-[100px]">{user.expiredate}</td>
                     </tr>
                   ))
