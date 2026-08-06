@@ -360,12 +360,6 @@ export default function GroupUserPage() {
     return <LoadingSpinner />;
   }
 
-  // ฟังก์ชันสำหรับเซนเซอร์ข้อมูล (แสดง 3 ตัวแรก + XXXX)
-  const maskValue = (value?: string | number) => {
-    if (!value) return "-";
-    const str = String(value);
-    return str.length > 3 ? `${str.slice(0, 3)}XXXX` : str;
-  };
 
   return (
     <div>
